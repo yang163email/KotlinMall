@@ -22,10 +22,12 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         setContentView(R.layout.activity_register)
 
         initInjection()
-//        mPresenter = RegisterPresenter()
-//        mPresenter.mView = this
         mRegisterBtn.setOnClickListener {
             mPresenter.register(mEtMobile.text.toString(),
+                    mEtVerifyCode.text.toString(), mEtPwd.text.toString())
+        }
+        mBtnGetVerifyCode.setOnClickListener {
+            mPresenter.register2(mEtMobile.text.toString(),
                     mEtVerifyCode.text.toString(), mEtPwd.text.toString())
         }
     }
@@ -40,6 +42,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
     }
 
     override fun onRegisterResult(result: Boolean) {
-        toast("注册成功")
+        if (result) toast("注册成功") else toast("注册失败")
     }
 }

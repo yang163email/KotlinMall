@@ -5,6 +5,7 @@ import com.yan.base.presenter.BasePresenter
 import com.yan.user.presenter.view.RegisterView
 import com.yan.user.service.UserService
 import javax.inject.Inject
+import javax.inject.Named
 
 /**
  *  @author      : yan
@@ -14,7 +15,12 @@ import javax.inject.Inject
 class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
     @Inject
+    @field:Named("service")
     lateinit var userService: UserService
+
+    @Inject
+    @field:Named("service2")
+    lateinit var userService2: UserService
 
     fun register(mobile: String, verifyCode: String, pwd: String) {
         //业务逻辑
@@ -35,6 +41,16 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 //                )
         //第三种
         userService.register(mobile, verifyCode, pwd)
+                .execute2 {
+                    onNext { mView.onRegisterResult(it) }
+                    onError {  }
+                    onComplete {  }
+                }
+    }
+
+    fun register2(mobile: String, verifyCode: String, pwd: String) {
+        //业务逻辑
+        userService2.register(mobile, verifyCode, pwd)
                 .execute2 {
                     onNext { mView.onRegisterResult(it) }
                     onError {  }
