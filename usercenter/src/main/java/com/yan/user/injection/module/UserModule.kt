@@ -8,7 +8,7 @@ import dagger.Provides
 /**
  *  @author      : yan
  *  @date        : 2018/1/12 20:28
- *  @description : 用户需要注入的模块
+ *  @description : 提供用户相关字段的module
  */
 @Module
 class UserModule {

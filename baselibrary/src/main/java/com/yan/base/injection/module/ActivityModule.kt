@@ -7,7 +7,7 @@ import dagger.Provides
 /**
  *  @author      : yan
  *  @date        : 2018/1/12 22:12
- *  @description : Application级别的module
+ *  @description : 提供Activity的module
  */
 @Module
 class ActivityModule(private val activity: Activity) {
