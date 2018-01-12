@@ -28,8 +28,8 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:1.0.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile project(':provider')
+    implementation project(':provider')
     if (isUserModule.toBoolean()) {
-        compile project(':usercenter')
+        implementation project(':usercenter')
     }
 }
