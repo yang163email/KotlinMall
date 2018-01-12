@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
@@ -50,6 +51,12 @@ dependencies {
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"
     api "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
 
+    //dagger2
+    api "com.google.dagger:dagger:$dagger2_version"
+//    api "com.google.dagger:dagger-android:$dagger2_version"
+//    api "com.google.dagger:dagger-android-support:$dagger2_version" // if you use the support libraries
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+//    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
 }
 repositories {
     mavenCentral()

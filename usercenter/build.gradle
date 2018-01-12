@@ -5,6 +5,13 @@ if (isUserModule.toBoolean()) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
+kapt {
+    generateStubs = true    //使用kotlin编译dagger2，不加上这句，不能运行
+//    arguments {
+//        arg("moduleName", project.getName())
+//    }
+}
 android {
     compileSdkVersion 26
 
@@ -51,4 +58,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     api project(':provider')
+    //dagger2
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
 }

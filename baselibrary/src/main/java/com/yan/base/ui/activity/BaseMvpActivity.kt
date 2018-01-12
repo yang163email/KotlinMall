@@ -2,6 +2,7 @@ package com.yan.base.ui.activity
 
 import com.yan.base.presenter.BasePresenter
 import com.yan.base.presenter.view.BaseView
+import javax.inject.Inject
 
 /**
  *  @author      : yan
@@ -10,6 +11,7 @@ import com.yan.base.presenter.view.BaseView
  */
 open class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView {
 
+    @Inject
     lateinit var mPresenter: P
 
     override fun showLoading() {
