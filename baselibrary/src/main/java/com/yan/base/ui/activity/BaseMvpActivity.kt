@@ -1,5 +1,10 @@
 package com.yan.base.ui.activity
 
+import android.os.Bundle
+import com.yan.base.common.BaseApplication
+import com.yan.base.injection.component.ActivityComponent
+import com.yan.base.injection.component.DaggerActivityComponent
+import com.yan.base.injection.module.ActivityModule
 import com.yan.base.presenter.BasePresenter
 import com.yan.base.presenter.view.BaseView
 import javax.inject.Inject
@@ -13,6 +18,20 @@ open class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView {
 
     @Inject
     lateinit var mPresenter: P
+
+    lateinit var activityComponent: ActivityComponent
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initActivityInjection()
+    }
+
+    private fun initActivityInjection() {
+        activityComponent = DaggerActivityComponent.builder()
+                .appComponent((application as BaseApplication).appComponent)
+                .activityModule(ActivityModule(this))
+                .build()
+    }
 
     override fun showLoading() {
 

@@ -1,5 +1,6 @@
 package com.yan.user.injection.module
 
+import com.yan.base.injection.ActivityScope
 import com.yan.user.service.UserService
 import com.yan.user.service.impl.UserServiceImpl
 import dagger.Module
