@@ -6,6 +6,8 @@ buildscript {
         anko_version = '0.10.4'
         rx_kotlin_version = '1.0.0'
         rx_android_version = '1.2.1'
+        okhttp3_version = '3.9.1'
+        retrofit_version = '2.3.0'
     }
     repositories {
         google()
