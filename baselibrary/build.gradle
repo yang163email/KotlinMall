@@ -33,12 +33,16 @@ dependencies {
 
     api 'com.android.support:appcompat-v7:26.1.0'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
-
+    //kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
+    //anko
     api("org.jetbrains.anko:anko-commons:$anko_version") {
         exclude group: 'org.jetbrains.kotlin'
     }
+    //rx
+    api "io.reactivex:rxkotlin:$rx_kotlin_version"
+    api "io.reactivex:rxandroid:$rx_android_version"
+
 }
 repositories {
     mavenCentral()
