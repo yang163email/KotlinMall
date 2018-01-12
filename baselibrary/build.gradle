@@ -43,6 +43,8 @@ dependencies {
     //rx
     api "io.reactivex:rxkotlin:$rx_kotlin_version"
     api "io.reactivex:rxandroid:$rx_android_version"
+    api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
+    api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
 
     //network
     api "com.squareup.okhttp3:okhttp:$okhttp3_version"
@@ -53,10 +55,10 @@ dependencies {
 
     //dagger2
     api "com.google.dagger:dagger:$dagger2_version"
-//    api "com.google.dagger:dagger-android:$dagger2_version"
-//    api "com.google.dagger:dagger-android-support:$dagger2_version" // if you use the support libraries
+    api "com.google.dagger:dagger-android:$dagger2_version"
+    api "com.google.dagger:dagger-android-support:$dagger2_version" // if you use the support libraries
     kapt "com.google.dagger:dagger-compiler:$dagger2_version"
-//    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
 }
 repositories {
     mavenCentral()

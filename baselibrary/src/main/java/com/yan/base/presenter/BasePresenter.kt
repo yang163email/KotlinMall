@@ -1,6 +1,8 @@
 package com.yan.base.presenter
 
+import com.trello.rxlifecycle.LifecycleProvider
 import com.yan.base.presenter.view.BaseView
+import javax.inject.Inject
 
 /**
  *  @author      : yan
@@ -10,4 +12,7 @@ import com.yan.base.presenter.view.BaseView
 open class BasePresenter<V : BaseView> {
 
     lateinit var mView: V
+
+    @Inject
+    lateinit var lifecycleProvider: LifecycleProvider<*>
 }

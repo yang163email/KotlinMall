@@ -5,6 +5,7 @@ import com.yan.base.common.BaseApplication
 import com.yan.base.injection.component.ActivityComponent
 import com.yan.base.injection.component.DaggerActivityComponent
 import com.yan.base.injection.module.ActivityModule
+import com.yan.base.injection.module.LifecycleProviderModule
 import com.yan.base.presenter.BasePresenter
 import com.yan.base.presenter.view.BaseView
 import javax.inject.Inject
@@ -30,6 +31,7 @@ open class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView {
         activityComponent = DaggerActivityComponent.builder()
                 .appComponent((application as BaseApplication).appComponent)
                 .activityModule(ActivityModule(this))
+                .lifecycleProviderModule(LifecycleProviderModule(this))
                 .build()
     }
 

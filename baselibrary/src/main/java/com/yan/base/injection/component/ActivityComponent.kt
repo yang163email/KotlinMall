@@ -1,8 +1,11 @@
 package com.yan.base.injection.component
 
 import android.app.Activity
+import android.content.Context
+import com.trello.rxlifecycle.LifecycleProvider
 import com.yan.base.injection.ActivityScope
 import com.yan.base.injection.module.ActivityModule
+import com.yan.base.injection.module.LifecycleProviderModule
 import dagger.Component
 
 /**
@@ -12,8 +15,10 @@ import dagger.Component
  */
 @ActivityScope
 @Component(dependencies = arrayOf(AppComponent::class),
-        modules = arrayOf(ActivityModule::class))
+        modules = arrayOf(ActivityModule::class, LifecycleProviderModule::class))
 interface ActivityComponent {
 
     fun activity(): Activity
+    fun context(): Context
+    fun lifecycleProviderModule(): LifecycleProvider<*>
 }

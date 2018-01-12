@@ -1,5 +1,6 @@
 package com.yan.base.ext
 
+import com.trello.rxlifecycle.LifecycleProvider
 import com.yan.base.rx.BaseSubscriber
 import com.yan.base.rx.SubscriberHelper
 import rx.Observable
@@ -47,10 +48,12 @@ fun <T> Observable<T>.execute1(onNext: (T) -> Unit,
 /**
  * 第三种扩展方式
  */
-fun <T> Observable<T>.execute2(init: SubscriberHelper<T>.() -> Unit) {
+fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
+                               init: SubscriberHelper<T>.() -> Unit) {
     val subscriberHelper = SubscriberHelper<T>()
     init(subscriberHelper)
     subscribeOn(Schedulers.io())
+            .compose(lifecycleProvider.bindToLifecycle())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(subscriberHelper)
 }
