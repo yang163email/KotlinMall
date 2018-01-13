@@ -2,6 +2,7 @@ package com.yan.base.ext
 
 import com.trello.rxlifecycle.LifecycleProvider
 import com.yan.base.data.protocol.BaseResp
+import com.yan.base.presenter.view.BaseView
 import com.yan.base.rx.BaseFun1
 import com.yan.base.rx.BaseFunc1Boolean
 import com.yan.base.rx.BaseSubscriber
@@ -46,8 +47,9 @@ fun <T> Observable<T>.execute1(onNext: (T) -> Unit,
  * 第三种扩展方式
  */
 fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
+                               baseView: BaseView,
                                init: SubscriberHelper<T>.() -> Unit) {
-    val subscriberHelper = SubscriberHelper<T>()
+    val subscriberHelper = SubscriberHelper<T>(baseView)
     init(subscriberHelper)
     subscribeOn(Schedulers.io())
             .compose(lifecycleProvider.bindToLifecycle())

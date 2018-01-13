@@ -1,5 +1,6 @@
 package com.yan.base.rx
 
+import com.yan.base.presenter.view.BaseView
 import rx.Subscriber
 
 typealias Next<T> = (T) -> Unit
@@ -10,7 +11,7 @@ typealias Complete = () -> Unit
  *  @date        : 2018/1/12 16:26
  *  @description : rx订阅帮助类，DSL编码方式
  */
-class SubscriberHelper<T> : Subscriber<T>() {
+class SubscriberHelper<T>(private val baseView: BaseView) : Subscriber<T>() {
 
     private var onNextListener: Next<T>? = null
     private var onErrorListener: Error? = null
@@ -33,10 +34,12 @@ class SubscriberHelper<T> : Subscriber<T>() {
     }
 
     override fun onError(e: Throwable) {
+        baseView.hideLoading()
         onErrorListener?.invoke(e)
     }
 
     override fun onCompleted() {
+        baseView.hideLoading()
         onCompleteListener?.invoke()
     }
 

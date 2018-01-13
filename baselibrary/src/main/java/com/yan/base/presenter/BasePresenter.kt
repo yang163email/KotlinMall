@@ -1,5 +1,7 @@
 package com.yan.base.presenter
 
+import android.content.Context
+import com.kotlin.base.utils.NetWorkUtils
 import com.trello.rxlifecycle.LifecycleProvider
 import com.yan.base.presenter.view.BaseView
 import javax.inject.Inject
@@ -15,4 +17,9 @@ open class BasePresenter<V : BaseView> {
 
     @Inject
     lateinit var lifecycleProvider: LifecycleProvider<*>
+
+    @Inject
+    lateinit var context: Context
+
+    protected fun checkNetWork() = NetWorkUtils.isNetWorkAvailable(context)
 }

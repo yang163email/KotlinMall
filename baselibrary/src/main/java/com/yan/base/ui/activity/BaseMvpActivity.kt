@@ -8,6 +8,7 @@ import com.yan.base.injection.module.ActivityModule
 import com.yan.base.injection.module.LifecycleProviderModule
 import com.yan.base.presenter.BasePresenter
 import com.yan.base.presenter.view.BaseView
+import com.yan.base.widgets.ProgressLoading
 import javax.inject.Inject
 
 /**
@@ -22,11 +23,14 @@ abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView 
 
     lateinit var activityComponent: ActivityComponent
 
+    private lateinit var mLoadingDialog: ProgressLoading
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initActivityInjection()
         injectComponent()
+        mLoadingDialog = ProgressLoading.create(this)
     }
 
     abstract fun injectComponent()
@@ -39,13 +43,9 @@ abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView 
                 .build()
     }
 
-    override fun showLoading() {
+    override fun showLoading() = mLoadingDialog.showLoading()
 
-    }
-
-    override fun hideLoading() {
-
-    }
+    override fun hideLoading() = mLoadingDialog.hideLoading()
 
     override fun onError() {
 
