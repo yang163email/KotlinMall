@@ -1,6 +1,7 @@
 package com.yan.user.ui.activity
 
 import android.os.Bundle
+import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.user.R
 import com.yan.user.injection.component.DaggerUserComponent
@@ -21,14 +22,13 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        initInjection()
-        mRegisterBtn.setOnClickListener {
+        mRegisterBtn.onClick {
             mPresenter.register(mEtMobile.text.toString(),
                     mEtVerifyCode.text.toString(), mEtPwd.text.toString())
         }
     }
 
-    private fun initInjection() {
+    override fun injectComponent() {
         DaggerUserComponent.builder()
                 .activityComponent(activityComponent)
                 .userModule(UserModule())
@@ -37,7 +37,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         mPresenter.mView = this
     }
 
-    override fun onRegisterResult(result: Boolean) {
-        if (result) toast("注册成功") else toast("注册失败")
+    override fun onRegisterResult(result: String) {
+        toast(result)
     }
 }

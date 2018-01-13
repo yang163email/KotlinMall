@@ -1,11 +1,6 @@
 package com.yan.base.ext
 
-import com.trello.rxlifecycle.LifecycleProvider
-import com.yan.base.rx.BaseSubscriber
-import com.yan.base.rx.SubscriberHelper
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import android.view.View
 
 /**
  *  @author      : yan
@@ -14,46 +9,8 @@ import rx.schedulers.Schedulers
  */
 
 /**
- * 扩展rx通用的执行方法
+ * 让setOnClickListener写起来更短
  */
-fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>) {
-    subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(subscriber)
-}
-
-/**
- * 第二种扩展方式
- */
-fun <T> Observable<T>.execute1(onNext: (T) -> Unit,
-                              onError: (Throwable) -> Unit = {},
-                              onComplete: () -> Unit = {}) {
-    subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : BaseSubscriber<T>() {
-                override fun onNext(t: T) {
-                    onNext(t)
-                }
-
-                override fun onError(e: Throwable) {
-                    onError(e)
-                }
-
-                override fun onCompleted() {
-                    onComplete()
-                }
-            })
-}
-
-/**
- * 第三种扩展方式
- */
-fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
-                               init: SubscriberHelper<T>.() -> Unit) {
-    val subscriberHelper = SubscriberHelper<T>()
-    init(subscriberHelper)
-    subscribeOn(Schedulers.io())
-            .compose(lifecycleProvider.bindToLifecycle())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(subscriberHelper)
+fun View.onClick(block: () -> Unit) {
+    setOnClickListener { block() }
 }

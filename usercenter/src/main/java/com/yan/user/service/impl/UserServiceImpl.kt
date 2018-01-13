@@ -1,11 +1,9 @@
 package com.yan.user.service.impl
 
-import com.yan.base.data.protocol.BaseResp
-import com.yan.base.rx.BaseException
+import com.yan.base.ext.convertBoolean
 import com.yan.user.data.repository.UserRepository
 import com.yan.user.service.UserService
 import rx.Observable
-import rx.functions.Func1
 import javax.inject.Inject
 
 /**
@@ -20,12 +18,7 @@ class UserServiceImpl @Inject constructor() : UserService {
 
     override fun register(mobile: String, pwd: String, verifyCode: String): Observable<Boolean> {
         return repository.register(mobile, pwd, verifyCode)
-                .flatMap(Func1<BaseResp<String>, Observable<Boolean>> { t ->
-                    if (t.status != 0) {
-                        return@Func1 Observable.error(BaseException(t.status, t.message))
-                    }
-                    return@Func1 Observable.just(true)
-                })
+                .convertBoolean()
 
     }
 }

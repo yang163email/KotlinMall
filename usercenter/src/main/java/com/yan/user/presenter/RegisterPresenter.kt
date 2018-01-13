@@ -20,9 +20,7 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
         //业务逻辑
         userService.register(mobile, verifyCode, pwd)
                 .execute2(lifecycleProvider) {
-                    onNext { mView.onRegisterResult(it) }
-                    onError {  }
-                    onComplete {  }
+                    onNext { if (it) mView.onRegisterResult("注册成功") }
                 }
     }
 }

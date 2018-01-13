@@ -1,4 +1,4 @@
-package com.yan.base.ui.activity
+package com.yan.base.ui.fragment
 
 import android.os.Bundle
 import com.yan.base.common.BaseApplication
@@ -13,9 +13,9 @@ import javax.inject.Inject
 /**
  *  @author      : yan
  *  @date        : 2018/1/12 15:07
- *  @description : 标准MVP架构的基类Activity，属于View层，并持有P层引用
+ *  @description : 标准MVP架构的基类Fragment，属于View层，并持有P层引用
  */
-abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView {
+abstract class BaseMvpFragment<P : BasePresenter<*>> : BaseFragment(), BaseView {
 
     @Inject
     lateinit var mPresenter: P
@@ -33,8 +33,8 @@ abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView 
 
     private fun initActivityInjection() {
         activityComponent = DaggerActivityComponent.builder()
-                .appComponent((application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(this))
+                .appComponent((activity.application as BaseApplication).appComponent)
+                .activityModule(ActivityModule(activity))
                 .lifecycleProviderModule(LifecycleProviderModule(this))
                 .build()
     }
