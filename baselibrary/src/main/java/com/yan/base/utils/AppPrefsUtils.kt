@@ -1,4 +1,4 @@
-package com.kotlin.base.utils
+package com.yan.base.utils
 
 import android.content.Context
 import android.content.SharedPreferences

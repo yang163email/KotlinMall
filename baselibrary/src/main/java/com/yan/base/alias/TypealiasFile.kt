@@ -12,3 +12,5 @@ typealias T1T2Unit<T1, T2> = (T1, T2) -> Unit
 
 /** textWatcher */
 typealias BeforeTextChanged = (s: CharSequence, start: Int, count: Int, after: Int) -> Unit
+
+typealias ExpandUnit<T> = T.() -> Unit

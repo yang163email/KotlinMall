@@ -1,4 +1,4 @@
-package com.kotlin.base.widgets
+package com.yan.base.widgets
 
 import android.content.Context
 import android.os.Handler

@@ -1,6 +1,7 @@
 package com.yan.base.ext
 
 import android.view.View
+import com.yan.base.alias.TypeUnit
 
 /**
  *  @author      : yan
@@ -11,6 +12,6 @@ import android.view.View
 /**
  * 让setOnClickListener写起来更短
  */
-fun View.onClick(block: () -> Unit) {
-    setOnClickListener { block() }
+fun View.onClick(block: TypeUnit<View>) {
+    setOnClickListener { block(this) }
 }

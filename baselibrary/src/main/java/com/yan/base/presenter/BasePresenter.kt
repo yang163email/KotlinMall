@@ -1,7 +1,7 @@
 package com.yan.base.presenter
 
 import android.content.Context
-import com.kotlin.base.utils.NetWorkUtils
+import com.yan.base.utils.NetWorkUtils
 import com.trello.rxlifecycle.LifecycleProvider
 import com.yan.base.presenter.view.BaseView
 import javax.inject.Inject

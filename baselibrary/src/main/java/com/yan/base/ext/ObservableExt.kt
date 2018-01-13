@@ -1,6 +1,9 @@
 package com.yan.base.ext
 
 import com.trello.rxlifecycle.LifecycleProvider
+import com.yan.base.alias.ExpandUnit
+import com.yan.base.alias.NoneUnit
+import com.yan.base.alias.TypeUnit
 import com.yan.base.data.protocol.BaseResp
 import com.yan.base.presenter.view.BaseView
 import com.yan.base.rx.BaseFun1
@@ -29,9 +32,9 @@ fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>) {
 /**
  * 第二种扩展方式
  */
-fun <T> Observable<T>.execute1(onNext: (T) -> Unit,
-                               onError: (Throwable) -> Unit = {},
-                               onComplete: () -> Unit = {}) {
+fun <T> Observable<T>.execute1(onNext: TypeUnit<T>,
+                               onError: TypeUnit<Throwable> = {},
+                               onComplete: NoneUnit = {}) {
     subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : BaseSubscriber<T>() {
@@ -48,7 +51,7 @@ fun <T> Observable<T>.execute1(onNext: (T) -> Unit,
  */
 fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
                                baseView: BaseView,
-                               init: SubscriberHelper<T>.() -> Unit) {
+                               init: ExpandUnit<SubscriberHelper<T>>) {
     val subscriberHelper = SubscriberHelper<T>(baseView)
     init(subscriberHelper)
     subscribeOn(Schedulers.io())
@@ -60,9 +63,9 @@ fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
 /**
  * 将网络返回的数据转换成对应类型Observable
  */
-fun <T> Observable<BaseResp<T>>.convert() = flatMap(BaseFun1())
+fun <T> Observable<BaseResp<T>>.convert(): Observable<T> = flatMap(BaseFun1())
 
 /**
  * 将网络返回的数据转换成Observable<Boolean>
  */
-fun <T> Observable<BaseResp<T>>.convertBoolean() = flatMap(BaseFunc1Boolean())
+fun <T> Observable<BaseResp<T>>.convertBoolean(): Observable<Boolean> = flatMap(BaseFunc1Boolean())
