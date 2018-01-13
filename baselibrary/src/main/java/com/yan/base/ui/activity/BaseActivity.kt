@@ -1,6 +1,8 @@
 package com.yan.base.ui.activity
 
+import android.os.Bundle
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity
+import com.yan.base.common.AppManager
 
 /**
  *  @author      : yan
@@ -8,4 +10,15 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity
  *  @description : 无需P层的简单基类Activity
  */
 open class BaseActivity : RxAppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        AppManager.instance.addActivity(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppManager.instance.finishActivity(this)
+    }
 }

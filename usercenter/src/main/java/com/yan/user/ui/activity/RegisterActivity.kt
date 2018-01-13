@@ -1,6 +1,7 @@
 package com.yan.user.ui.activity
 
 import android.os.Bundle
+import com.yan.base.common.AppManager
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.user.R
@@ -17,6 +18,9 @@ import org.jetbrains.anko.toast
  *  @description : 注册界面
  */
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+
+    /** 按下back键的时间，默认0 */
+    private var pressTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,5 +43,13 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
 
     override fun onRegisterResult(result: String) {
         toast(result)
+    }
+
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - pressTime > 2000) {
+            toast("再按一次退出")
+            pressTime = time
+        } else AppManager.instance.exitApp(this)
     }
 }
