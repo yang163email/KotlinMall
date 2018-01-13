@@ -3,7 +3,7 @@ package com.yan.user.ui.activity
 import android.os.Bundle
 import android.view.View
 import com.yan.base.common.AppManager
-import com.yan.base.ext.enable
+import com.yan.base.ext.enable2
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.user.R
@@ -35,11 +35,11 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
         mBtnRegister.onClick(this)
         mBtnVerifyCode.onClick(this)
 
-        //监听下面几个，为了知道注册按钮是否可用
-        mBtnRegister.enable(mEtMobile) { isBtnEnable() }
-        mBtnRegister.enable(mEtVerifyCode) { isBtnEnable() }
-        mBtnRegister.enable(mEtPwd) { isBtnEnable() }
-        mBtnRegister.enable(mEtPwdConfirm) { isBtnEnable() }
+        mBtnRegister.apply {
+            onClick(this@RegisterActivity)
+            //监听下面几个，为了知道注册按钮是否可用
+            enable2(arrayOf(mEtMobile, mEtVerifyCode, mEtPwd, mEtPwdConfirm)) { isBtnEnable() }
+        }
     }
 
     /**

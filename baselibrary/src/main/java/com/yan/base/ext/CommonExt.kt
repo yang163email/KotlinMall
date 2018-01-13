@@ -28,19 +28,32 @@ fun View.onClick(listener: View.OnClickListener) {
 /**
  * 给EditText设置DSL风格的TextChanged监听器
  */
-fun EditText.onTextChanged(block: ExpandNone_Unit<TextWatcherHelper>) {
+fun EditText.onTextChangedListener(block: ExpandNone_Unit<TextWatcherHelper>) {
     val helper = TextWatcherHelper()
     block(helper)
     addTextChangedListener(helper)
 }
 
 /**
- * 扩展Button是否可用
+ * 扩展Button是否可用,单个EditText监听
  */
 fun Button.enable(et: EditText, enable: None_Return<Boolean>) {
-    et.onTextChanged {
+    et.onTextChangedListener {
         onTextChanged { s, start, count, after ->
             this@enable.isEnabled = enable()
+        }
+    }
+}
+
+/**
+ * 扩展Button是否可用，支持多个EditText监听
+ */
+fun Button.enable2(etList: Array<EditText>, enable: None_Return<Boolean>) {
+    etList.forEach {
+        it.onTextChangedListener {
+            onTextChanged { s, start, count, after ->
+                this@enable2.isEnabled = enable()
+            }
         }
     }
 }
