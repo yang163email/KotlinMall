@@ -6,36 +6,36 @@
 
     <com.yan.base.widgets.HeaderBar
         android:id="@+id/mHeaderBar"
-        app:titleText="注册"
-        style="@style/MatchWrap"/>
+        style="@style/MatchWrap"
+        app:titleText="注册"/>
 
     <LinearLayout
-        android:background="@drawable/border_corner_all"
+        style="@style/MatchWrap.Vertical"
         android:layout_margin="@dimen/common_margin"
-        style="@style/MatchWrap.Vertical">
+        android:background="@drawable/border_corner_all">
 
         <LinearLayout style="@style/MatchWrap.Horizontal">
 
             <EditText
                 android:id="@+id/mEtMobile"
-                  android:background="@null"
-                  android:paddingLeft="@dimen/common_padding_small"
-                  android:layout_width="0dp"
-                  android:layout_height="@dimen/common_line_height"
-                  android:hint="请输入手机号码"
-                  android:drawableLeft="@drawable/icon_phone"
-                  android:drawablePadding="@dimen/common_padding_small"
-                  android:layout_weight="1.0"
-                  android:inputType="phone"/>
+                android:layout_width="0dp"
+                android:layout_height="@dimen/common_line_height"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:drawableLeft="@drawable/icon_phone"
+                android:drawablePadding="@dimen/common_padding_small"
+                android:hint="请输入手机号码"
+                android:inputType="phone"
+                android:paddingLeft="@dimen/common_padding_small"/>
 
             <View style="@style/DividerFixedWidth.MarginTopBottom"/>
 
             <com.yan.base.widgets.VerifyButton
-                    android:id="@+id/mBtnVerifyCode"
-                    style="@style/WrapMatch"
-                    android:textColor="@color/common_blue"
-                    android:background="@null"
-                    android:text="获取验证码"/>
+                android:id="@+id/mBtnVerifyCode"
+                style="@style/WrapMatch"
+                android:background="@null"
+                android:text="获取验证码"
+                android:textColor="@color/common_blue"/>
 
         </LinearLayout>
 
@@ -43,40 +43,40 @@
 
         <EditText
             android:id="@+id/mEtVerifyCode"
-              android:background="@null"
-              android:paddingLeft="@dimen/common_padding_small"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/common_line_height"
-              android:hint="请输入短信验证码"
-              android:drawableLeft="@drawable/icon_verify_code"
-              android:drawablePadding="@dimen/common_padding_small"
-              android:inputType="number"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawableLeft="@drawable/icon_verify_code"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:hint="请输入短信验证码"
+            android:inputType="number"
+            android:paddingLeft="@dimen/common_padding_small"/>
 
         <View style="@style/DividerFixedHeight"/>
 
         <EditText
             android:id="@+id/mEtPwd"
-              android:background="@null"
-              android:paddingLeft="@dimen/common_padding_small"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/common_line_height"
-              android:hint="请输入密码（6-20位字母或数字）"
-              android:drawableLeft="@drawable/icon_pwd"
-              android:drawablePadding="@dimen/common_padding_small"
-              android:inputType="textPassword"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawableLeft="@drawable/icon_pwd"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:hint="请输入密码（6-20位字母或数字）"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/common_padding_small"/>
 
         <View style="@style/DividerFixedHeight"/>
 
         <EditText
             android:id="@+id/mEtPwdConfirm"
-              android:background="@null"
-              android:paddingLeft="@dimen/common_padding_small"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/common_line_height"
-              android:hint="请再次输入密码"
-              android:drawableLeft="@drawable/icon_pwd"
-              android:drawablePadding="@dimen/common_padding_small"
-              android:inputType="textPassword"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawableLeft="@drawable/icon_pwd"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:hint="请再次输入密码"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/common_padding_small"/>
 
     </LinearLayout>
 
