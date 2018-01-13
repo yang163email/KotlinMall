@@ -1,11 +1,14 @@
 package com.yan.base.widgets
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import com.yan.base.R
+import com.yan.base.ext.onClick
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 
 /**
@@ -20,10 +23,11 @@ class HeaderBar @JvmOverloads constructor(
     private var isShowBack = true
     private var titleText: String? = null
     private var rightText: String? = null
+    private val mContext: Context
 
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_header_bar, this)
-
+        mContext = context
         val ta = context.obtainStyledAttributes(attrs, R.styleable.HeaderBar)
         isShowBack = ta.getBoolean(R.styleable.HeaderBar_isShowBack, true)
         titleText = ta.getString(R.styleable.HeaderBar_titleText)
@@ -40,5 +44,11 @@ class HeaderBar @JvmOverloads constructor(
             mTvRight.text = it
             mTvRight.visibility = View.VISIBLE
         }
+
+        mIvLeft.onClick {
+            if (mContext is Activity) { mContext.finish() }
+        }
     }
+
+    fun getRightView(): TextView = mTvRight
 }

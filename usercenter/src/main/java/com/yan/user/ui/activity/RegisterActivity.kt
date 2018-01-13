@@ -45,10 +45,9 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
     /**
      * 判断当前按钮是否可用；只有所有编辑框都有文字才可用
      */
-    private fun isBtnEnable(): Boolean {
-        return !mEtMobile.text.isNullOrEmpty() && !mEtVerifyCode.text.isNullOrEmpty() &&
-               !mEtPwd.text.isNullOrEmpty() && !mEtPwdConfirm.text.isNullOrEmpty()
-    }
+    private fun isBtnEnable(): Boolean =
+            !mEtMobile.text.isNullOrEmpty() && !mEtVerifyCode.text.isNullOrEmpty() &&
+                    !mEtPwd.text.isNullOrEmpty() && !mEtPwdConfirm.text.isNullOrEmpty()
 
     override fun injectComponent() {
         DaggerUserComponent.builder()

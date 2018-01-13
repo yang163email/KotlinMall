@@ -1,6 +1,8 @@
 package com.yan.user.service.impl
 
+import com.yan.base.ext.convert
 import com.yan.base.ext.convertBoolean
+import com.yan.user.data.protocol.UserInfo
 import com.yan.user.data.repository.UserRepository
 import com.yan.user.service.UserService
 import rx.Observable
@@ -16,9 +18,10 @@ class UserServiceImpl @Inject constructor() : UserService {
     @Inject
     lateinit var repository: UserRepository
 
-    override fun register(mobile: String, pwd: String, verifyCode: String): Observable<Boolean> {
-        return repository.register(mobile, pwd, verifyCode)
-                .convertBoolean()
+    override fun register(mobile: String, pwd: String, verifyCode: String): Observable<Boolean> =
+            repository.register(mobile, pwd, verifyCode).convertBoolean()
 
-    }
+    override fun login(mobile: String, pwd: String, pushId: String): Observable<UserInfo> =
+            repository.login(mobile, pwd, pushId).convert()
+
 }
