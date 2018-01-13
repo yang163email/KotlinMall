@@ -70,6 +70,15 @@ dependencies {
 
     //recyclerview
     api "com.android.support:recyclerview-v7:$android_support_sdk_version"
+
+    //circleimageview
+    api "de.hdodenhof:circleimageview:$circle_imageView_version"
+
+    //takephoto
+    api "com.jph.takephoto:takephoto_library:$take_photo_version"
+
+    //alertview
+    api "com.bigkoo:alertview:$alert_view_version"
 }
 repositories {
     mavenCentral()
