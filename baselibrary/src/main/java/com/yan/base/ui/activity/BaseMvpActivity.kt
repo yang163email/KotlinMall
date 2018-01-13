@@ -9,6 +9,7 @@ import com.yan.base.injection.module.LifecycleProviderModule
 import com.yan.base.presenter.BasePresenter
 import com.yan.base.presenter.view.BaseView
 import com.yan.base.widgets.ProgressLoading
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -47,7 +48,7 @@ abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView 
 
     override fun hideLoading() = mLoadingDialog.hideLoading()
 
-    override fun onError() {
-
+    override fun onError(msg: String) {
+        toast(msg)
     }
 }

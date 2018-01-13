@@ -1,11 +1,10 @@
 package com.yan.base.rx
 
+import com.yan.base.alias.NoneUnit
+import com.yan.base.alias.TypeUnit
 import com.yan.base.presenter.view.BaseView
 import rx.Subscriber
 
-typealias Next<T> = (T) -> Unit
-typealias Error = (Throwable) -> Unit
-typealias Complete = () -> Unit
 /**
  *  @author      : yan
  *  @date        : 2018/1/12 16:26
@@ -13,19 +12,19 @@ typealias Complete = () -> Unit
  */
 class SubscriberHelper<T>(private val baseView: BaseView) : Subscriber<T>() {
 
-    private var onNextListener: Next<T>? = null
-    private var onErrorListener: Error? = null
-    private var onCompleteListener: Complete? = null
+    private var onNextListener: TypeUnit<T>? = null
+    private var onErrorListener: TypeUnit<Throwable>? = null
+    private var onCompleteListener: NoneUnit? = null
 
-    fun onNext(next: Next<T>) {
+    fun onNext(next: TypeUnit<T>) {
         onNextListener = next
     }
 
-    fun onError(error: Error) {
+    fun onError(error: TypeUnit<Throwable>) {
         onErrorListener = error
     }
 
-    fun onComplete(complete: Complete) {
+    fun onComplete(complete: NoneUnit) {
         onCompleteListener = complete
     }
 

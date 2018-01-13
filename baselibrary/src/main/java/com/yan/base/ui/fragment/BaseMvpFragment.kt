@@ -47,7 +47,7 @@ abstract class BaseMvpFragment<P : BasePresenter<*>> : BaseFragment(), BaseView 
 
     }
 
-    override fun onError() {
+    override fun onError(msg: String) {
 
     }
 }

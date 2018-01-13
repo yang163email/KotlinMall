@@ -18,10 +18,7 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
     fun register(mobile: String, verifyCode: String, pwd: String) {
         //业务逻辑
-        if (!checkNetWork()) {
-            println("网络不可用")
-            return
-        }
+        if (!checkNetWork()) return
         mView.showLoading()
 
         userService.register(mobile, verifyCode, pwd)

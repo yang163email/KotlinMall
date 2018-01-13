@@ -30,6 +30,12 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
             mPresenter.register(mEtMobile.text.toString(),
                     mEtVerifyCode.text.toString(), mEtPwd.text.toString())
         }
+        mBtnGetVerifyCode.onClick {
+            mBtnGetVerifyCode.setOnVerifyBtnClick {
+                println("--------")
+            }
+            mBtnGetVerifyCode.requestSendVerifyNumber()
+        }
     }
 
     override fun injectComponent() {

@@ -21,5 +21,9 @@ open class BasePresenter<V : BaseView> {
     @Inject
     lateinit var context: Context
 
-    protected fun checkNetWork() = NetWorkUtils.isNetWorkAvailable(context)
+    protected fun checkNetWork(): Boolean{
+        if (NetWorkUtils.isNetWorkAvailable(context)) return true
+        mView.onError("网络不可用")
+        return false
+    }
 }
