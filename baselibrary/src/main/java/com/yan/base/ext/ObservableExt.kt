@@ -1,9 +1,9 @@
 package com.yan.base.ext
 
 import com.trello.rxlifecycle.LifecycleProvider
-import com.yan.base.alias.ExpandUnit
-import com.yan.base.alias.NoneUnit
-import com.yan.base.alias.TypeUnit
+import com.yan.base.alias.ExpandNone_Unit
+import com.yan.base.alias.None_Unit
+import com.yan.base.alias.Type_Unit
 import com.yan.base.data.protocol.BaseResp
 import com.yan.base.presenter.view.BaseView
 import com.yan.base.rx.BaseFun1
@@ -32,9 +32,9 @@ fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>) {
 /**
  * 第二种扩展方式
  */
-fun <T> Observable<T>.execute1(onNext: TypeUnit<T>,
-                               onError: TypeUnit<Throwable> = {},
-                               onComplete: NoneUnit = {}) {
+fun <T> Observable<T>.execute1(onNext: Type_Unit<T>,
+                               onError: Type_Unit<Throwable> = {},
+                               onComplete: None_Unit = {}) {
     subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : BaseSubscriber<T>() {
@@ -51,7 +51,7 @@ fun <T> Observable<T>.execute1(onNext: TypeUnit<T>,
  */
 fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
                                baseView: BaseView,
-                               init: ExpandUnit<SubscriberHelper<T>>) {
+                               init: ExpandNone_Unit<SubscriberHelper<T>>) {
     val subscriberHelper = SubscriberHelper<T>(baseView)
     init(subscriberHelper)
     subscribeOn(Schedulers.io())

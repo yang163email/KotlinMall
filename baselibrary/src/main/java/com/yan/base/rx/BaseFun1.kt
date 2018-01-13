@@ -1,5 +1,6 @@
 package com.yan.base.rx
 
+import com.yan.base.common.ResultCode
 import com.yan.base.data.protocol.BaseResp
 import rx.Observable
 import rx.functions.Func1
@@ -11,7 +12,7 @@ import rx.functions.Func1
  */
 class BaseFun1<T> : Func1<BaseResp<T>, Observable<T>> {
     override fun call(t: BaseResp<T>): Observable<T> {
-        if (t.status != 0) {
+        if (t.status != ResultCode.SUCCESS) {
             return Observable.error(BaseException(t.status, t.message))
         }
         return Observable.just(t.data)

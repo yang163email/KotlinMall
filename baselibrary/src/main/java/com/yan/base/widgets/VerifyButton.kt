@@ -5,7 +5,7 @@ import android.os.Handler
 import android.util.AttributeSet
 import android.widget.Button
 import com.yan.base.R
-import com.yan.base.alias.NoneUnit
+import com.yan.base.alias.None_Unit
 
 /**
  *  @author      : yan
@@ -16,7 +16,7 @@ class VerifyButton(mContext: Context, attrs: AttributeSet) : Button(mContext, at
 
     private val mHandler: Handler
     private var mCount = 60
-    private var mOnVerifyBtnClick: NoneUnit? = null
+    private var mOnVerifyBtnClick: None_Unit? = null
 
     init {
         this.text = "获取验证码"
@@ -72,7 +72,7 @@ class VerifyButton(mContext: Context, attrs: AttributeSet) : Button(mContext, at
     /**
      * 点击事件
      */
-    fun setOnVerifyBtnClick(onVerifyBtnClick: NoneUnit) {
+    fun setOnVerifyBtnClick(onVerifyBtnClick: None_Unit) {
         this.mOnVerifyBtnClick = onVerifyBtnClick
     }
 }

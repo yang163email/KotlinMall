@@ -6,11 +6,19 @@ package com.yan.base.alias
  *  @description : 存放typealias的文件
  */
 
-typealias NoneUnit = () -> Unit
-typealias TypeUnit<T> = (T) -> Unit
-typealias T1T2Unit<T1, T2> = (T1, T2) -> Unit
+/**
+ * 无返回值函数类型别名
+ */
+typealias None_Unit = () -> Unit
+typealias Type_Unit<T> = (T) -> Unit
+typealias T1T2_Unit<T1, T2> = (T1, T2) -> Unit
+
+/**
+ * 有返回值函数类型别名
+ */
+typealias None_Return<R> = () -> R
 
 /** textWatcher */
 typealias BeforeTextChanged = (s: CharSequence, start: Int, count: Int, after: Int) -> Unit
 
-typealias ExpandUnit<T> = T.() -> Unit
+typealias ExpandNone_Unit<T> = T.() -> Unit

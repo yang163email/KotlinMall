@@ -1,7 +1,7 @@
 package com.yan.base.rx
 
-import com.yan.base.alias.NoneUnit
-import com.yan.base.alias.TypeUnit
+import com.yan.base.alias.None_Unit
+import com.yan.base.alias.Type_Unit
 import com.yan.base.presenter.view.BaseView
 import rx.Subscriber
 
@@ -12,19 +12,19 @@ import rx.Subscriber
  */
 class SubscriberHelper<T>(private val baseView: BaseView) : Subscriber<T>() {
 
-    private var onNextListener: TypeUnit<T>? = null
-    private var onErrorListener: TypeUnit<Throwable>? = null
-    private var onCompleteListener: NoneUnit? = null
+    private var onNextListener: Type_Unit<T>? = null
+    private var onErrorListener: Type_Unit<Throwable>? = null
+    private var onCompleteListener: None_Unit? = null
 
-    fun onNext(next: TypeUnit<T>) {
+    fun onNext(next: Type_Unit<T>) {
         onNextListener = next
     }
 
-    fun onError(error: TypeUnit<Throwable>) {
+    fun onError(error: Type_Unit<Throwable>) {
         onErrorListener = error
     }
 
-    fun onComplete(complete: NoneUnit) {
+    fun onComplete(complete: None_Unit) {
         onCompleteListener = complete
     }
 
@@ -34,6 +34,9 @@ class SubscriberHelper<T>(private val baseView: BaseView) : Subscriber<T>() {
 
     override fun onError(e: Throwable) {
         baseView.hideLoading()
+        if (e is BaseException) {
+            baseView.onError(e.msg)
+        }
         onErrorListener?.invoke(e)
     }
 

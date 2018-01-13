@@ -2,7 +2,7 @@ package com.kotlin.base.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import com.yan.base.alias.T1T2Unit
+import com.yan.base.alias.T1T2_Unit
 import com.yan.base.ext.onClick
 
 /**
@@ -15,7 +15,7 @@ abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(val mCon
 
     //ItemClick事件
 //    var mItemClickListener: OnItemClickListener<T>? = null
-    private var mItemClickListener: T1T2Unit<T, Int>? = null
+    private var mItemClickListener: T1T2_Unit<T, Int>? = null
 
     //数据集合
     private var dataList: MutableList<T> = mutableListOf()
@@ -46,7 +46,7 @@ abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(val mCon
 //        fun onItemClick(item: T, position: Int)
 //    }
 
-    fun setOnItemClickListener(listener: T1T2Unit<T, Int>) {
+    fun setOnItemClickListener(listener: T1T2_Unit<T, Int>) {
         this.mItemClickListener = listener
     }
 }

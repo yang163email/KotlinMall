@@ -81,7 +81,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/mRegisterBtn"
+        android:id="@+id/mBtnRegister"
         style="@style/FullBtnStyle"
         android:text="注册"/>
 
