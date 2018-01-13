@@ -6,8 +6,9 @@ package com.yan.base.alias
  *  @description : 存放typealias的文件
  */
 
-typealias TypeUnit<T> = (T) -> Unit
 typealias NoneUnit = () -> Unit
+typealias TypeUnit<T> = (T) -> Unit
+typealias T1T2Unit<T1, T2> = (T1, T2) -> Unit
 
 /** textWatcher */
 typealias BeforeTextChanged = (s: CharSequence, start: Int, count: Int, after: Int) -> Unit

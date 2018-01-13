@@ -2,6 +2,7 @@
 
 buildscript {
     ext {
+        android_support_sdk_version = '26.1.0'
         kotlin_version = '1.2.10'
         anko_version = '0.10.4'
         rx_kotlin_version = '1.0.0'
