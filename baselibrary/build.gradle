@@ -85,6 +85,9 @@ dependencies {
 
     //bottom-navigation-bar
     api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar_version"
+
+    //banner
+    api "com.youth.banner:banner:$banner_version"
 }
 repositories {
     mavenCentral()
