@@ -1,50 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/MatchMatch.Vertical">
+<ScrollView style="@style/MatchMatch">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/MatchWrap.Vertical">
 
-    <com.youth.banner.Banner
-        android:id="@+id/mBanner"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"/>
+        <LinearLayout
+            style="@style/SearchHeaderStyle"
+            android:paddingLeft="@dimen/common_padding">
 
-    <com.yan.message.widget.NewsFlipperView
-        android:id="@+id/mNewsFlipperView"
-        style="@style/MatchWrap"/>
+            <EditText
+                android:id="@+id/mSearchEt"
+                style="@style/SearchHeaderEtStyle"
+                android:cursorVisible="false"
+                android:editable="false"
+                android:hint="搜索商品/品类"/>
 
-    <TextView
-        style="@style/MatchWrap"
-        android:background="@color/common_white"
-        android:drawableLeft="@drawable/icon_special"
-        android:drawablePadding="@dimen/common_padding_small"
-        android:paddingBottom="@dimen/common_margin_small"
-        android:paddingLeft="@dimen/common_margin"
-        android:paddingTop="@dimen/common_padding_small"
-        android:text="火爆进行中"
-        android:textColor="@color/text_light_dark"
-        android:textSize="@dimen/text_small_size"
-        android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/mScanIv"
+                style="@style/WrapWrap"
+                android:src="@drawable/icon_scan"/>
+        </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mRvHomeDiscount"
-        style="@style/commonRecyclerView"
-        android:layout_height="wrap_content"
-        android:background="@color/common_white"
-        android:paddingBottom="@dimen/common_padding_small"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding"/>
+        <com.youth.banner.Banner
+            android:id="@+id/mBanner"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
 
-    <me.crosswall.lib.coverflow.core.PagerContainer
-        android:id="@+id/mTopicContainer"
-        style="@style/MatchMatch"
-        android:background="@drawable/home_container_bg">
+        <com.yan.message.widget.NewsFlipperView
+            android:id="@+id/mNewsFlipperView"
+            style="@style/MatchWrap"/>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/mVpTopic"
-            android:layout_width="200dp"
-            android:layout_height="160dp"
-            android:layout_gravity="center"
-            android:overScrollMode="never"/>
-    </me.crosswall.lib.coverflow.core.PagerContainer>
+        <TextView
+            style="@style/MatchWrap"
+            android:background="@color/common_white"
+            android:drawableLeft="@drawable/icon_special"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:paddingBottom="@dimen/common_margin_small"
+            android:paddingLeft="@dimen/common_margin"
+            android:paddingTop="@dimen/common_padding_small"
+            android:text="火爆进行中"
+            android:textColor="@color/text_light_dark"
+            android:textSize="@dimen/text_small_size"
+            android:textStyle="bold"/>
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRvHomeDiscount"
+            style="@style/commonRecyclerView"
+            android:layout_height="wrap_content"
+            android:background="@color/common_white"
+            android:paddingBottom="@dimen/common_padding_small"
+            android:paddingLeft="@dimen/common_padding"
+            android:paddingRight="@dimen/common_padding"/>
+
+        <me.crosswall.lib.coverflow.core.PagerContainer
+            android:id="@+id/mTopicContainer"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/home_container_bg">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/mVpTopic"
+                android:layout_width="200dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:overScrollMode="never"/>
+        </me.crosswall.lib.coverflow.core.PagerContainer>
+
+    </LinearLayout>
+</ScrollView>
