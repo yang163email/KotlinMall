@@ -30,7 +30,9 @@ fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>) {
 }
 
 /**
- * 第二种扩展方式
+ *  第二种扩展方式
+ *  已废弃，由于其已经有了三个分开的回调，可以不使用
+ *  直接使用.subscribe({ //onNext操作 }, { //onError操作 }, { //onComplete操作 })
  */
 fun <T> Observable<T>.execute1(onNext: Type_Unit<T>,
                                onError: Type_Unit<Throwable> = {},

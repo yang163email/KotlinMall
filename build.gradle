@@ -16,6 +16,7 @@ buildscript {
         take_photo_version = '4.0.3'
         alert_view_version = '1.0.3'
         qiniu_version = '7.3.+'
+        bottom_navigation_bar_version = '2.0.4'
     }
     repositories {
         google()
