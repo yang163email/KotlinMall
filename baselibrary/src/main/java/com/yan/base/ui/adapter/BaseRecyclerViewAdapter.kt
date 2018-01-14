@@ -1,4 +1,4 @@
-package com.kotlin.base.ui.adapter
+package com.yan.base.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -14,11 +14,10 @@ abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(val mCon
     : RecyclerView.Adapter<VH>() {
 
     //ItemClick事件
-//    var mItemClickListener: OnItemClickListener<T>? = null
     private var mItemClickListener: T1T2_Unit<T, Int>? = null
 
     //数据集合
-    private var dataList: MutableList<T> = mutableListOf()
+    protected var dataList: MutableList<T> = mutableListOf()
 
     /**
      * 设置数据
@@ -38,13 +37,6 @@ abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(val mCon
     override fun getItemCount(): Int {
         return dataList.size
     }
-
-//    /**
-//     * ItemClick事件声明
-//     */
-//    interface OnItemClickListener<in T> {
-//        fun onItemClick(item: T, position: Int)
-//    }
 
     fun setOnItemClickListener(listener: T1T2_Unit<T, Int>) {
         this.mItemClickListener = listener

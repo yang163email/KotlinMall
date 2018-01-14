@@ -88,6 +88,9 @@ dependencies {
 
     //banner
     api "com.youth.banner:banner:$banner_version"
+
+    //TriangleLabelView
+    api "com.github.shts:TriangleLabelView:$triangle_label_view_version"
 }
 repositories {
     mavenCentral()

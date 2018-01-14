@@ -18,6 +18,7 @@ buildscript {
         qiniu_version = '7.3.+'
         bottom_navigation_bar_version = '2.0.4'
         banner_version = '1.4.10'
+        triangle_label_view_version = '1.1.2'
     }
     repositories {
         google()
@@ -36,6 +37,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 

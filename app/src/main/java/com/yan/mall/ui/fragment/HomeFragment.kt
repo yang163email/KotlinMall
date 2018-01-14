@@ -1,16 +1,15 @@
 package com.yan.mall.ui.fragment
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yan.base.ui.fragment.BaseFragment
 import com.yan.base.widgets.BannerImageLoader
 import com.yan.mall.R
-import com.yan.mall.common.HOME_BANNER_FOUR
-import com.yan.mall.common.HOME_BANNER_ONE
-import com.yan.mall.common.HOME_BANNER_THREE
-import com.yan.mall.common.HOME_BANNER_TWO
+import com.yan.mall.common.*
+import com.yan.mall.ui.adapter.HomeDiscountAdapter
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -29,6 +28,7 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initBanner()
         initNews()
+        initDiscount()
     }
 
     private fun initBanner() {
@@ -52,5 +52,23 @@ class HomeFragment : BaseFragment() {
     private fun initNews() {
         //公告
         mNewsFlipperView.setData(arrayOf("夏日炎炎，第一波福利还有30秒到达战场", "新用户立领1000元优惠券"))
+    }
+
+    /**
+     * 初始化折扣
+     */
+    private fun initDiscount() {
+        val discountAdapter = HomeDiscountAdapter(context)
+        mRvHomeDiscount.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = discountAdapter
+        }
+        discountAdapter.setData(mutableListOf(HOME_DISCOUNT_ONE, HOME_DISCOUNT_TWO,
+                HOME_DISCOUNT_THREE, HOME_DISCOUNT_FOUR, HOME_DISCOUNT_FIVE))
+
+        discountAdapter.setOnItemClickListener { s, i ->
+            println("position: $i, content: $s")
+        }
+
     }
 }
