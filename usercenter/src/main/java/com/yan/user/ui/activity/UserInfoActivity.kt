@@ -16,9 +16,12 @@ import com.jph.takephoto.permission.InvokeListener
 import com.jph.takephoto.permission.PermissionManager
 import com.jph.takephoto.permission.PermissionManager.TPermissionType
 import com.jph.takephoto.permission.TakePhotoInvocationHandler
+import com.qiniu.android.storage.UploadManager
+import com.yan.base.common.BaseConstant
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.base.utils.DateUtils
+import com.yan.base.utils.GlideUtils
 import com.yan.user.R
 import com.yan.user.injection.component.DaggerUserComponent
 import com.yan.user.injection.module.UserModule
@@ -35,12 +38,16 @@ import java.io.File
 class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView,
         TakePhoto.TakeResultListener, InvokeListener {
 
-    val TAG = javaClass.simpleName
-
     private var alertView: AlertView? = null
     private lateinit var mTakePhoto: TakePhoto
     private lateinit var mTempFile: File
+    /** 选择本地文件的url */
+    private var mLocalFileUrl: String? = null
+    /** 远程图片url */
+    private var mRemoteFileUrl: String? = null
     private var invokeParam: InvokeParam? = null
+
+    private val mUploadManager by lazy { UploadManager() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,8 +107,8 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView,
     }
 
     override fun takeSuccess(result: TResult?) {
-        Log.d(TAG, "takeSuccess: ${result?.image?.originalPath}")
-        Log.d(TAG, "takeSuccess: ${result?.image?.compressPath}")
+        mLocalFileUrl = result?.image?.compressPath
+        mPresenter.getUploadToken()
     }
 
     override fun takeCancel() {
@@ -120,6 +127,19 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView,
         return type
     }
 
+    /**
+     * 获取上传token回调
+     */
+    override fun onGetUploadTokenResult(result: String) {
+        mUploadManager.put(mLocalFileUrl, null, result, {
+            key, info, response ->
+            mRemoteFileUrl = BaseConstant.IMAGE_SERVER_ADDRESS + response.get("hash")
+
+            Log.d(TAG, "onGetUploadTokenResult: $mRemoteFileUrl")
+            GlideUtils.loadUrlImage(this, mRemoteFileUrl!!, mIvUserIcon)
+        }, null)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         mTakePhoto.onActivityResult(requestCode, resultCode, data)
@@ -134,9 +154,8 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView,
 
     /**
      * 获取TakePhoto实例
-     * @return
      */
-    fun getTakePhoto() {
+    private fun getTakePhoto() {
         mTakePhoto = TakePhotoInvocationHandler.of(this).bind(TakePhotoImpl(this, this)) as TakePhoto
     }
 

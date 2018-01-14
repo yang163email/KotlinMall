@@ -2,6 +2,7 @@ package com.yan.user.injection.component
 
 import com.yan.base.injection.PerComponentScope
 import com.yan.base.injection.component.ActivityComponent
+import com.yan.user.injection.module.UploadModule
 import com.yan.user.injection.module.UserModule
 import com.yan.user.ui.activity.*
 import dagger.Component
@@ -13,7 +14,7 @@ import dagger.Component
  */
 @PerComponentScope
 @Component(dependencies = arrayOf(ActivityComponent::class),
-        modules = arrayOf(UserModule::class))
+        modules = arrayOf(UserModule::class, UploadModule::class))
 interface UserComponent {
 
     fun inject(activity: RegisterActivity)

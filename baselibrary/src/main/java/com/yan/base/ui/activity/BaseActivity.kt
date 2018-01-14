@@ -11,6 +11,8 @@ import com.yan.base.common.AppManager
  */
 open class BaseActivity : RxAppCompatActivity() {
 
+    protected val TAG = javaClass.simpleName
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

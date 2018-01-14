@@ -79,6 +79,9 @@ dependencies {
 
     //alertview
     api "com.bigkoo:alertview:$alert_view_version"
+
+    //qiniu
+    api "com.qiniu:qiniu-android-sdk:$qiniu_version"
 }
 repositories {
     mavenCentral()

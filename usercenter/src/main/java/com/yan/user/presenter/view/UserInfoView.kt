@@ -9,4 +9,6 @@ import com.yan.base.presenter.view.BaseView
  */
 interface UserInfoView : BaseView {
 
+    fun onGetUploadTokenResult(result: String)
+
 }
