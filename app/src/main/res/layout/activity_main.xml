@@ -6,9 +6,7 @@
 
     <FrameLayout
         android:id="@+id/mFlContainer"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        style="@style/MatchAuto"/>
 
     <com.yan.base.widgets.BottomNavBar
         android:id="@+id/mBottomNavBar"

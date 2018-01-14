@@ -22,13 +22,13 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBanner()
+        initNews()
     }
 
     private fun initBanner() {
@@ -44,5 +44,13 @@ class HomeFragment : BaseFragment() {
                 .setIndicatorGravity(BannerConfig.CENTER)
                 //banner设置方法全部调用完毕时最后调用
                 .start()
+    }
+
+    /**
+     * 初始化公告
+     */
+    private fun initNews() {
+        //公告
+        mNewsFlipperView.setData(arrayOf("夏日炎炎，第一波福利还有30秒到达战场", "新用户立领1000元优惠券"))
     }
 }
