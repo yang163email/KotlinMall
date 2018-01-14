@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch.Vertical">
+
+    <com.yan.base.widgets.HeaderBar
+        style="@style/MatchWrap"
+        app:titleText="设置"/>
+
+    <TextView
+        android:id="@+id/mTvUserProtocol"
+        style="@style/SettingItemStyle"
+        android:text="用户协议"/>
+
+    <TextView
+        android:id="@+id/mTvFeedBack"
+        style="@style/SettingItemStyle"
+        android:text="反馈意见"/>
+
+    <TextView
+        android:id="@+id/mTvAbout"
+        style="@style/SettingItemStyle"
+        android:text="关于"/>
+
+    <Button
+        android:id="@+id/mBtnLogout"
+        style="@style/FullBtnStyle"
+        android:enabled="true"
+        android:text="退出登录"/>
+</LinearLayout>

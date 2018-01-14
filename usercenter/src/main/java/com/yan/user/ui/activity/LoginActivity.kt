@@ -62,6 +62,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         //存储用户信息到sp中
         UserPrefsUtils.putUserInfo(result)
         startActivity<UserInfoActivity>()
+        finish()
     }
 
     override fun onClick(v: View) {
