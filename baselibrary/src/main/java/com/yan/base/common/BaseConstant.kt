@@ -18,6 +18,8 @@ class BaseConstant {
         const val READ_TIMEOUT = 10L
 
         const val TABLE_PREFS = "KotlinMall"
+
+        const val KEY_SP_TOKEN = "token"
     }
 
 }

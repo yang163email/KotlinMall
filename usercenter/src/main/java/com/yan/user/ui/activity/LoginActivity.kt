@@ -11,6 +11,7 @@ import com.yan.user.injection.component.DaggerUserComponent
 import com.yan.user.injection.module.UserModule
 import com.yan.user.presenter.LoginPresenter
 import com.yan.user.presenter.view.LoginView
+import com.yan.user.utils.UserPrefsUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -58,6 +59,9 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
      */
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")
+        //存储用户信息到sp中
+        UserPrefsUtils.putUserInfo(result)
+        startActivity<UserInfoActivity>()
     }
 
     override fun onClick(v: View) {

@@ -1,6 +1,7 @@
 package com.yan.base.data.net
 
 import com.yan.base.common.BaseConstant
+import com.yan.base.utils.AppPrefsUtils
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -53,6 +54,7 @@ class RetrofitFactory private constructor(){
                 .newBuilder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("charset", "utf-8")
+                .addHeader(BaseConstant.KEY_SP_TOKEN, AppPrefsUtils.getString(BaseConstant.KEY_SP_TOKEN))
                 .build()
         chain.proceed(request)
     }

@@ -1,6 +1,7 @@
 package com.yan.user.presenter.view
 
 import com.yan.base.presenter.view.BaseView
+import com.yan.user.data.protocol.UserInfo
 
 /**
  *  @author      : yan
@@ -11,4 +12,5 @@ interface UserInfoView : BaseView {
 
     fun onGetUploadTokenResult(result: String)
 
+    fun onEditUserResult(userInfo: UserInfo)
 }

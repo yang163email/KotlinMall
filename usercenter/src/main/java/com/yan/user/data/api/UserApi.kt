@@ -36,4 +36,10 @@ interface UserApi {
      */
     @POST("userCenter/resetPwd")
     fun resetPwd(@Body req: ResetPwdReq): Observable<BaseResp<String>>
+
+    /**
+     * 修改用户资料
+     */
+    @POST("userCenter/editUser")
+    fun editUser(@Body req: EditUserReq): Observable<BaseResp<UserInfo>>
 }

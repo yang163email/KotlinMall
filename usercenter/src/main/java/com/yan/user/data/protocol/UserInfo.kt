@@ -6,8 +6,10 @@ package com.yan.user.data.protocol
  *  @description : 用户信息实体类
  */
 data class UserInfo(
-        val id: Long,
+        val id: String,
+        val userIcon: String,
         val userName: String,
+        val userGender:String,
         val userMobile: String,
-        val pushId: String
+        val userSign: String
 )
