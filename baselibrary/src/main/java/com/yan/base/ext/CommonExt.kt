@@ -1,10 +1,14 @@
 package com.yan.base.ext
 
-import com.yan.base.rx.BaseSubscriber
-import com.yan.base.rx.SubscriberHelper
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import com.yan.base.alias.ExpandNone_Unit
+import com.yan.base.alias.None_Return
+import com.yan.base.alias.Type_Unit
+import com.yan.base.utils.GlideUtils
+import com.yan.base.widgets.TextWatcherHelper
 
 /**
  *  @author      : yan
@@ -13,44 +17,50 @@ import rx.schedulers.Schedulers
  */
 
 /**
- * 扩展rx通用的执行方法
+ * 让setOnClickListener写起来更短
  */
-fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>) {
-    subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(subscriber)
+fun View.onClick(block: Type_Unit<View>) {
+    setOnClickListener { block(this) }
+}
+
+fun View.onClick(listener: View.OnClickListener) {
+    setOnClickListener(listener)
 }
 
 /**
- * 第二种扩展方式
+ * 给EditText设置DSL风格的TextChanged监听器
  */
-fun <T> Observable<T>.execute1(onNext: (T) -> Unit,
-                              onError: (Throwable) -> Unit = {},
-                              onComplete: () -> Unit = {}) {
-    subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : BaseSubscriber<T>() {
-                override fun onNext(t: T) {
-                    onNext(t)
-                }
-
-                override fun onError(e: Throwable) {
-                    onError(e)
-                }
-
-                override fun onCompleted() {
-                    onComplete()
-                }
-            })
+fun EditText.onTextChangedListener(block: ExpandNone_Unit<TextWatcherHelper>) {
+    val helper = TextWatcherHelper()
+    block(helper)
+    addTextChangedListener(helper)
 }
 
 /**
- * 第三种扩展方式
+ * 扩展Button是否可用,单个EditText监听
  */
-fun <T> Observable<T>.execute2(init: SubscriberHelper<T>.() -> Unit) {
-    val subscriberHelper = SubscriberHelper<T>()
-    init(subscriberHelper)
-    subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(subscriberHelper)
+fun Button.enable(et: EditText, enable: None_Return<Boolean>) {
+    et.onTextChangedListener {
+        onTextChanged { s, start, count, after ->
+            this@enable.isEnabled = enable()
+        }
+    }
 }
+
+/**
+ * 扩展Button是否可用，支持多个EditText监听
+ */
+fun Button.enable2(etList: Array<EditText>, enable: None_Return<Boolean>) {
+    etList.forEach {
+        it.onTextChangedListener {
+            onTextChanged { s, start, count, after ->
+                this@enable2.isEnabled = enable()
+            }
+        }
+    }
+}
+
+/**
+ * ImageView加载网络图片
+ */
+fun ImageView.loadUrl(url: String) = GlideUtils.loadUrlImage(context, url, this)

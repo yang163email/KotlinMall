@@ -1,7 +1,10 @@
 package com.yan.user.injection.component
 
+import com.yan.base.injection.PerComponentScope
+import com.yan.base.injection.component.ActivityComponent
+import com.yan.user.injection.module.UploadModule
 import com.yan.user.injection.module.UserModule
-import com.yan.user.ui.activity.RegisterActivity
+import com.yan.user.ui.activity.*
 import dagger.Component
 
 /**
@@ -9,8 +12,14 @@ import dagger.Component
  *  @date        : 2018/1/12 20:33
  *  @description : 用户模块Component，关联UserModule
  */
-@Component(modules = arrayOf(UserModule::class))
+@PerComponentScope
+@Component(dependencies = arrayOf(ActivityComponent::class),
+        modules = arrayOf(UserModule::class, UploadModule::class))
 interface UserComponent {
 
     fun inject(activity: RegisterActivity)
+    fun inject(activity: LoginActivity)
+    fun inject(activity: ForgetPwdActivity)
+    fun inject(activity: ResetPwdActivity)
+    fun inject(activity: UserInfoActivity)
 }

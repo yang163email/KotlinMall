@@ -16,29 +16,14 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
     @Inject
     lateinit var userService: UserService
 
-    fun register(mobile: String, verifyCode: String, pwd: String) {
+    fun register(mobile: String, pwd: String, verifyCode: String) {
         //业务逻辑
-//        val userService = UserServiceImpl()
-        //第一种
-//        userService.register(mobile, verifyCode, pwd)
-//                .execute(object : BaseSubscriber<Boolean>() {
-//                    override fun onNext(t: Boolean) {
-//                        mView.onRegisterResult(t)
-//                    }
-//                })
-        //第二种
-//        userService.register(mobile, verifyCode, pwd)
-//                .execute1(
-//                        onNext = {},
-//                        onError = {},
-//                        onComplete = {}
-//                )
-        //第三种
-        userService.register(mobile, verifyCode, pwd)
-                .execute2 {
-                    onNext { mView.onRegisterResult(it) }
-                    onError {  }
-                    onComplete {  }
+        if (!checkNetWork()) return
+        mView.showLoading()
+
+        userService.register(mobile, pwd, verifyCode)
+                .execute2(lifecycleProvider, mView) {
+                    onNext { if (it) mView.onRegisterResult("注册成功") }
                 }
     }
 }
