@@ -10,9 +10,11 @@ import com.yan.base.widgets.BannerImageLoader
 import com.yan.mall.R
 import com.yan.mall.common.*
 import com.yan.mall.ui.adapter.HomeDiscountAdapter
+import com.yan.mall.ui.adapter.TopicAdapter
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
+import me.crosswall.lib.coverflow.CoverFlow
 
 /**
  *  @author      : yan
@@ -29,6 +31,7 @@ class HomeFragment : BaseFragment() {
         initBanner()
         initNews()
         initDiscount()
+        initTopic()
     }
 
     private fun initBanner() {
@@ -70,5 +73,24 @@ class HomeFragment : BaseFragment() {
             println("position: $i, content: $s")
         }
 
+    }
+
+    /**
+     * 初始化主题
+     */
+    private fun initTopic() {
+        mVpTopic.apply {
+            adapter = TopicAdapter(context, listOf(HOME_TOPIC_ONE, HOME_TOPIC_TWO,
+                    HOME_TOPIC_THREE, HOME_TOPIC_FOUR, HOME_TOPIC_FIVE))
+            currentItem = 1
+            offscreenPageLimit = 5
+
+            CoverFlow.Builder()
+                    .with(this)
+                    .scale(0.3f)
+                    .pagerMargin(-30.0f)
+                    .spaceSize(0.0f)
+                    .build()
+        }
     }
 }

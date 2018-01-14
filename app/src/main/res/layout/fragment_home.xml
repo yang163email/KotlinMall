@@ -34,4 +34,17 @@
         android:paddingLeft="@dimen/common_padding"
         android:paddingRight="@dimen/common_padding"/>
 
+    <me.crosswall.lib.coverflow.core.PagerContainer
+        android:id="@+id/mTopicContainer"
+        style="@style/MatchMatch"
+        android:background="@drawable/home_container_bg">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mVpTopic"
+            android:layout_width="200dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:overScrollMode="never"/>
+    </me.crosswall.lib.coverflow.core.PagerContainer>
+
 </LinearLayout>

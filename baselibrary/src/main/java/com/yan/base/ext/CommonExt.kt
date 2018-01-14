@@ -3,9 +3,11 @@ package com.yan.base.ext
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import com.yan.base.alias.ExpandNone_Unit
 import com.yan.base.alias.None_Return
 import com.yan.base.alias.Type_Unit
+import com.yan.base.utils.GlideUtils
 import com.yan.base.widgets.TextWatcherHelper
 
 /**
@@ -57,3 +59,8 @@ fun Button.enable2(etList: Array<EditText>, enable: None_Return<Boolean>) {
         }
     }
 }
+
+/**
+ * ImageView加载网络图片
+ */
+fun ImageView.loadUrl(url: String) = GlideUtils.loadUrlImage(context, url, this)
