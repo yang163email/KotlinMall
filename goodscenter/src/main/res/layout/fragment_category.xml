@@ -9,7 +9,7 @@
         app:isShowBack="false"
         app:titleText="商品分类"/>
 
-    <LinearLayout style="@style/MatchWrap.Horizontal">
+    <LinearLayout style="@style/MatchMatch.Horizontal">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/mRvTopCategory"
