@@ -11,6 +11,7 @@ import com.yan.base.ext.setVisible
 import com.yan.base.ext.startLoading
 import com.yan.base.ui.fragment.BaseMvpFragment
 import com.yan.goods.R
+import com.yan.goods.common.GoodsConstant
 import com.yan.goods.data.protocol.Category
 import com.yan.goods.injection.component.DaggerCategoryComponent
 import com.yan.goods.injection.module.CategoryModule
@@ -79,7 +80,7 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
     private fun initSecondView() {
         mSecondAdapter = SecondCategoryAdapter(context)
         mSecondAdapter.setOnItemClickListener { category, i ->
-            startActivity<GoodsActivity>("categoryId" to category.id)
+            startActivity<GoodsActivity>(GoodsConstant.KEY_CATEGORY_ID to category.id)
         }
         mRvSecondCategory.apply {
             layoutManager = GridLayoutManager(context, 3)
