@@ -93,6 +93,8 @@ dependencies {
     api 'com.github.shts:TriangleLabelView:1.1.2'
     //Coverflow
     api 'com.github.crosswall:Android-Coverflow:release-v1.0.4'
+    //MultiStateView
+    api 'com.github.Kennyc1012:MultiStateView:1.3.2'
 }
 repositories {
     mavenCentral()

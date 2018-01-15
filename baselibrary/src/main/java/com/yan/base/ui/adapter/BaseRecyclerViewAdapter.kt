@@ -17,7 +17,7 @@ abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(val mCon
     private var mItemClickListener: T1T2_Unit<T, Int>? = null
 
     //数据集合
-    protected var dataList: MutableList<T> = mutableListOf()
+    var dataList: MutableList<T> = mutableListOf()
 
     /**
      * 设置数据
