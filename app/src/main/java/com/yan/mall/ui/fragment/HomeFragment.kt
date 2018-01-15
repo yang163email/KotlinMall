@@ -5,8 +5,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.yan.base.ext.onClick
 import com.yan.base.ui.fragment.BaseFragment
 import com.yan.base.widgets.BannerImageLoader
+import com.yan.goods.ui.activity.SearchGoodsActivity
 import com.yan.mall.R
 import com.yan.mall.common.*
 import com.yan.mall.ui.adapter.HomeDiscountAdapter
@@ -15,23 +17,29 @@ import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.crosswall.lib.coverflow.CoverFlow
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  *  @author      : yan
  *  @date        : 2018/1/14 14:56
  *  @description : 首页Fragment
  */
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initListener()
         initBanner()
         initNews()
         initDiscount()
         initTopic()
+    }
+
+    private fun initListener() {
+        mEtSearch.onClick(this)
     }
 
     private fun initBanner() {
@@ -91,6 +99,12 @@ class HomeFragment : BaseFragment() {
                     .pagerMargin(-30.0f)
                     .spaceSize(0.0f)
                     .build()
+        }
+    }
+
+    override fun onClick(v: View) {
+        when(v.id) {
+            R.id.mEtSearch -> startActivity<SearchGoodsActivity>()
         }
     }
 }

@@ -22,7 +22,8 @@ import kotlinx.android.synthetic.main.activity_goods.*
  *  @date        : 2018/1/15 16:02
  *  @description : 商品列表页面
  */
-class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView, BGARefreshLayout.BGARefreshLayoutDelegate {
+class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView,
+        BGARefreshLayout.BGARefreshLayoutDelegate {
 
     private lateinit var mGoodsAdapter: GoodsAdapter
 
