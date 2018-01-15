@@ -1,6 +1,9 @@
 package com.yan.base.ui.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.yan.base.common.BaseApplication
 import com.yan.base.injection.component.ActivityComponent
 import com.yan.base.injection.component.DaggerActivityComponent
@@ -22,11 +25,11 @@ abstract class BaseMvpFragment<P : BasePresenter<*>> : BaseFragment(), BaseView 
 
     lateinit var activityComponent: ActivityComponent
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initActivityInjection()
         injectComponent()
+
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     abstract fun injectComponent()

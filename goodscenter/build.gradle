@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
+kapt {
+    generateStubs = true    //使用kotlin编译dagger2，不加上这句，不能运行
+}
 android {
     compileSdkVersion 26
 
