@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 /**
  *  @author      : yan
- *  @date        : 2018/1/12 15:13
- *  @description : 登录界面Presenter层
+ *  @date        : 2018/1/15 16:03
+ *  @description : 分类界面Presenter层
  */
 class CategoryPresenter @Inject constructor() : BasePresenter<CategoryView>() {
 

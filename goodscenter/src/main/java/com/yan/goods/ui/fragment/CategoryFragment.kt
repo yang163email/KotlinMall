@@ -16,9 +16,11 @@ import com.yan.goods.injection.component.DaggerCategoryComponent
 import com.yan.goods.injection.module.CategoryModule
 import com.yan.goods.presenter.CategoryPresenter
 import com.yan.goods.presenter.view.CategoryView
+import com.yan.goods.ui.activity.GoodsActivity
 import com.yan.goods.ui.adapter.SecondCategoryAdapter
 import com.yan.goods.ui.adapter.TopCategoryAdapter
 import kotlinx.android.synthetic.main.fragment_category.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  *  @author      : yan
@@ -51,6 +53,11 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
     }
 
     private fun initView() {
+        initTopView()
+        initSecondView()
+    }
+
+    private fun initTopView() {
         mTopAdapter = TopCategoryAdapter(context)
         mTopAdapter.setOnItemClickListener { category, i ->
             // 如果已经选择，跳过
@@ -67,10 +74,12 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
             layoutManager = LinearLayoutManager(context)
             adapter = mTopAdapter
         }
+    }
 
+    private fun initSecondView() {
         mSecondAdapter = SecondCategoryAdapter(context)
         mSecondAdapter.setOnItemClickListener { category, i ->
-            TODO()
+            startActivity<GoodsActivity>("categoryId" to category.id)
         }
         mRvSecondCategory.apply {
             layoutManager = GridLayoutManager(context, 3)
