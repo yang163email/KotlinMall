@@ -26,4 +26,15 @@ class GoodsListPresenter @Inject constructor() : BasePresenter<GoodsListView>() 
                     onNext { mView.onGetGoodsListResult(it) }
                 }
     }
+
+    fun getGoodsListByKeyword(keyword: String, pageNo: Int) {
+        //业务逻辑
+        if (!checkNetWork()) return
+        mView.showLoading()
+
+        goodsService.getGoodsListByKeyword(keyword, pageNo)
+                .execute2(lifecycleProvider, mView) {
+                    onNext { mView.onGetGoodsListResult(it) }
+                }
+    }
 }
