@@ -2,7 +2,7 @@ package com.yan.base.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import com.yan.base.alias.T1T2_Unit
+import com.yan.base.alias.T2_Unit
 import com.yan.base.ext.onClick
 
 /**
@@ -14,7 +14,7 @@ abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(val mCon
     : RecyclerView.Adapter<VH>() {
 
     //ItemClick事件
-    private var mItemClickListener: T1T2_Unit<T, Int>? = null
+    private var mItemClickListener: T2_Unit<T, Int>? = null
 
     //数据集合
     var dataList: MutableList<T> = mutableListOf()
@@ -38,7 +38,7 @@ abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(val mCon
         return dataList.size
     }
 
-    fun setOnItemClickListener(listener: T1T2_Unit<T, Int>) {
+    fun setOnItemClickListener(listener: T2_Unit<T, Int>) {
         this.mItemClickListener = listener
     }
 }

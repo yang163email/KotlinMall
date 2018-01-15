@@ -7,9 +7,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import com.kennyc.view.MultiStateView
 import com.yan.base.R
-import com.yan.base.alias.ExpandNone_Unit
-import com.yan.base.alias.None_Return
-import com.yan.base.alias.Type_Unit
+import com.yan.base.alias.Ex_T0_Unit
+import com.yan.base.alias.T0_Boolean
+import com.yan.base.alias.View_Unit
 import com.yan.base.utils.GlideUtils
 import com.yan.base.widgets.TextWatcherHelper
 import org.jetbrains.anko.find
@@ -23,7 +23,7 @@ import org.jetbrains.anko.find
 /**
  * 让setOnClickListener写起来更短
  */
-fun View.onClick(block: Type_Unit<View>) {
+fun View.onClick(block: View_Unit) {
     setOnClickListener { block(this) }
 }
 
@@ -34,7 +34,7 @@ fun View.onClick(listener: View.OnClickListener) {
 /**
  * 给EditText设置DSL风格的TextChanged监听器
  */
-fun EditText.onTextChangedListener(block: ExpandNone_Unit<TextWatcherHelper>) {
+fun EditText.onTextChangedListener(block: Ex_T0_Unit<TextWatcherHelper>) {
     val helper = TextWatcherHelper()
     block(helper)
     addTextChangedListener(helper)
@@ -43,7 +43,7 @@ fun EditText.onTextChangedListener(block: ExpandNone_Unit<TextWatcherHelper>) {
 /**
  * 扩展Button是否可用,单个EditText监听
  */
-fun Button.enable(et: EditText, enable: None_Return<Boolean>) {
+fun Button.enable(et: EditText, enable: T0_Boolean) {
     et.onTextChangedListener {
         onTextChanged { s, start, count, after ->
             this@enable.isEnabled = enable()
@@ -54,7 +54,7 @@ fun Button.enable(et: EditText, enable: None_Return<Boolean>) {
 /**
  * 扩展Button是否可用，支持多个EditText监听
  */
-fun Button.enable2(etList: Array<EditText>, enable: None_Return<Boolean>) {
+fun Button.enable2(etList: Array<EditText>, enable: T0_Boolean) {
     etList.forEach {
         it.onTextChangedListener {
             onTextChanged { s, start, count, after ->

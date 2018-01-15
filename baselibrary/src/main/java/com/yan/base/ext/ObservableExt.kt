@@ -1,9 +1,10 @@
 package com.yan.base.ext
 
 import com.trello.rxlifecycle.LifecycleProvider
-import com.yan.base.alias.ExpandNone_Unit
-import com.yan.base.alias.None_Unit
-import com.yan.base.alias.Type_Unit
+import com.yan.base.alias.Ex_T0_Unit
+import com.yan.base.alias.T0_Unit
+import com.yan.base.alias.T1_Unit
+import com.yan.base.alias.Throwable_Unit
 import com.yan.base.data.protocol.BaseResp
 import com.yan.base.presenter.view.BaseView
 import com.yan.base.rx.BaseFun1
@@ -34,9 +35,9 @@ fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>) {
  *  已废弃，由于其已经有了三个分开的回调，可以不使用
  *  直接使用.subscribe({ //onNext操作 }, { //onError操作 }, { //onComplete操作 })
  */
-fun <T> Observable<T>.execute1(onNext: Type_Unit<T>,
-                               onError: Type_Unit<Throwable> = {},
-                               onComplete: None_Unit = {}) {
+fun <T> Observable<T>.execute1(onNext: T1_Unit<T>,
+                               onError: Throwable_Unit = {},
+                               onComplete: T0_Unit = {}) {
     subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : BaseSubscriber<T>() {
@@ -53,7 +54,7 @@ fun <T> Observable<T>.execute1(onNext: Type_Unit<T>,
  */
 fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
                                baseView: BaseView,
-                               init: ExpandNone_Unit<SubscriberHelper<T>>) {
+                               init: Ex_T0_Unit<SubscriberHelper<T>>) {
     val subscriberHelper = SubscriberHelper<T>(baseView)
     init(subscriberHelper)
     subscribeOn(Schedulers.io())
