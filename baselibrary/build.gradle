@@ -57,6 +57,7 @@ dependencies {
     api "io.reactivex:rxandroid:$rx_android_version"
     api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
     api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
+    api 'com.eightbitlab:rxbus:1.0.2'
 
     //network
     api "com.squareup.okhttp3:okhttp:$okhttp3_version"

@@ -4,6 +4,7 @@ import com.yan.base.injection.PerComponentScope
 import com.yan.base.injection.component.ActivityComponent
 import com.yan.goods.injection.module.GoodsModule
 import com.yan.goods.ui.activity.GoodsActivity
+import com.yan.goods.ui.fragment.GoodsDetailTabOneFragment
 import dagger.Component
 
 /**
@@ -17,4 +18,5 @@ import dagger.Component
 interface GoodsComponent {
 
     fun inject(activity: GoodsActivity)
+    fun inject(fragment: GoodsDetailTabOneFragment)
 }

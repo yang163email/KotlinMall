@@ -35,7 +35,7 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_goods)
         initView()
-        initRefreshLayout();
+        initRefreshLayout()
         loadData()
     }
 
@@ -51,7 +51,7 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView,
     private fun initView() {
         mGoodsAdapter = GoodsAdapter(this)
         mGoodsAdapter.setOnItemClickListener { goods, i ->
-            startActivity<GoodsDetailActivity>()
+            startActivity<GoodsDetailActivity>(GoodsConstant.KEY_GOODS_ID to goods.id)
         }
         mRvGoods.apply {
             layoutManager = GridLayoutManager(this@GoodsActivity, 2)
