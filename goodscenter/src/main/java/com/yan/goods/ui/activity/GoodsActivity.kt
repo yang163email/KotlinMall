@@ -16,6 +16,7 @@ import com.yan.goods.presenter.GoodsListPresenter
 import com.yan.goods.presenter.view.GoodsListView
 import com.yan.goods.ui.adapter.GoodsAdapter
 import kotlinx.android.synthetic.main.activity_goods.*
+import org.jetbrains.anko.startActivity
 
 /**
  *  @author      : yan
@@ -49,6 +50,9 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView,
 
     private fun initView() {
         mGoodsAdapter = GoodsAdapter(this)
+        mGoodsAdapter.setOnItemClickListener { goods, i ->
+            startActivity<GoodsDetailActivity>()
+        }
         mRvGoods.apply {
             layoutManager = GridLayoutManager(this@GoodsActivity, 2)
             adapter = mGoodsAdapter
