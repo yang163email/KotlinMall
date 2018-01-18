@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.eightbitlab.rxbus.Bus
 import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ext.onClick
+import com.yan.base.ui.activity.BaseActivity
 import com.yan.base.ui.fragment.BaseMvpFragment
 import com.yan.base.widgets.BannerImageLoader
 import com.yan.goods.R
@@ -18,7 +19,6 @@ import com.yan.goods.injection.component.DaggerGoodsComponent
 import com.yan.goods.injection.module.GoodsModule
 import com.yan.goods.presenter.GoodsDetailPresenter
 import com.yan.goods.presenter.view.GoodsDetailView
-import com.yan.goods.ui.activity.GoodsDetailActivity
 import com.yan.goods.widget.GoodsSkuPopView
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
@@ -75,7 +75,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
         mSkuView.onClick {
             mSkuPop.showAsDropDown(
-                (activity as GoodsDetailActivity).contentView,
+                (activity as BaseActivity).contentView,
                 Gravity.BOTTOM and Gravity.CENTER_HORIZONTAL,
                 0
             )
@@ -101,6 +101,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         mSkuPop.setGoodsIcon(result.goodsDefaultIcon)
         mSkuPop.setGoodsCode(result.goodsCode)
         mSkuPop.setGoodsPrice(result.goodsDefaultPrice)
+        mSkuPop.setSkuData(result.goodsSku)
     }
 
     private fun setBanner(goods: Goods) {

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity
-import com.yan.base.R
 import com.yan.base.common.AppManager
 import org.jetbrains.anko.find
 
@@ -18,7 +17,7 @@ open class BaseActivity : RxAppCompatActivity() {
     protected val TAG = javaClass.simpleName
     protected val contentView: View
         get() {
-            val content = find<FrameLayout>(R.id.content)
+            val content = find<FrameLayout>(android.R.id.content)
             return content.getChildAt(0)
         }
 
