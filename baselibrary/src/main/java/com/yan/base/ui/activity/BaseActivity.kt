@@ -15,7 +15,7 @@ import org.jetbrains.anko.find
 open class BaseActivity : RxAppCompatActivity() {
 
     protected val TAG = javaClass.simpleName
-    protected val contentView: View
+    val contentView: View
         get() {
             val content = find<FrameLayout>(android.R.id.content)
             return content.getChildAt(0)

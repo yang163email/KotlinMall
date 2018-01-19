@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.eightbitlab.rxbus.Bus
 import com.yan.goods.R
 import com.yan.goods.common.GoodsConstant
 import com.yan.goods.data.protocol.GoodsSku
+import com.yan.goods.event.SkuChangedEvent
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import kotlinx.android.synthetic.main.layout_sku_view.view.*
@@ -18,11 +20,15 @@ import kotlinx.android.synthetic.main.layout_sku_view.view.*
  *  @date        : 2018/1/18 15:39
  *  @description : 单个SKU
  */
-class SkuView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) : FrameLayout(context, attrs, defStyle) {
+class SkuView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
+) : FrameLayout(context, attrs, defStyle) {
     private lateinit var mGoodsSku: GoodsSku
 
     init {
-         View.inflate(context, R.layout.layout_sku_view, this)
+        View.inflate(context, R.layout.layout_sku_view, this)
     }
 
     /**
@@ -33,10 +39,10 @@ class SkuView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
         mTvSkuTitle.text = goodsSku.skuTitle
 
         //FlowLayout设置数据
-        mSkuContentView.adapter = object : TagAdapter<String>(goodsSku.skuContent){
+        mSkuContentView.adapter = object : TagAdapter<String>(goodsSku.skuContent) {
             override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
                 val view = LayoutInflater.from(context)
-                        .inflate(R.layout.layout_sku_item,parent,false) as TextView
+                        .inflate(R.layout.layout_sku_item, parent, false) as TextView
                 view.text = t
                 return view
             }
@@ -45,7 +51,7 @@ class SkuView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
         mSkuContentView.adapter.setSelectedList(0)
 
         mSkuContentView.setOnTagClickListener { _, _, _ ->
-//            Bus.send(SkuChangedEvent())
+            Bus.send(SkuChangedEvent())
             true
         }
     }
