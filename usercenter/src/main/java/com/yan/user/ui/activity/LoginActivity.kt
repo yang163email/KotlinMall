@@ -2,9 +2,11 @@ package com.yan.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.yan.base.ext.enable2
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
+import com.yan.provider.router.RouterPath
 import com.yan.user.R
 import com.yan.user.data.protocol.UserInfo
 import com.yan.user.injection.component.DaggerUserComponent
@@ -21,6 +23,7 @@ import org.jetbrains.anko.toast
  *  @date        : 2018/1/11 22:34
  *  @description : 登录界面
  */
+@Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {

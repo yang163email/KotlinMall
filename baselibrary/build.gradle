@@ -101,6 +101,8 @@ dependencies {
     api 'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
     //flowlayout
     api 'com.hyman:flowlayout-lib:1.1.2'
+    //arouter
+    compile "com.alibaba:arouter-api:$arouter_api_version"
 }
 repositories {
     mavenCentral()

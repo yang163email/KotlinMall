@@ -41,9 +41,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
     private lateinit var mAnimationStart: ScaleAnimation
     private lateinit var mAnimationEnd: ScaleAnimation
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_goods_detail_tab_one, container, false)
     }
@@ -82,9 +80,9 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
         mSkuView.onClick {
             mSkuPop.showAsDropDown(
-                (activity as BaseActivity).contentView,
-                Gravity.BOTTOM and Gravity.CENTER_HORIZONTAL,
-                0
+                    (activity as BaseActivity).contentView,
+                    Gravity.BOTTOM and Gravity.CENTER_HORIZONTAL,
+                    0
             )
             (activity as BaseActivity).contentView.startAnimation(mAnimationStart)
         }
@@ -95,19 +93,19 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
      */
     private fun initAnim() {
         mAnimationStart = ScaleAnimation(
-            1f, 0.95f,
-            1f, 0.95f,
-            Animation.RELATIVE_TO_SELF, 0.5f,
-            Animation.RELATIVE_TO_SELF, 0.5f
+                1f, 0.95f,
+                1f, 0.95f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
         )
         mAnimationStart.duration = 500
         mAnimationStart.fillAfter = true
 
         mAnimationEnd = ScaleAnimation(
-            0.95f, 1f,
-            0.95f, 1f,
-            Animation.RELATIVE_TO_SELF, 0.5f,
-            Animation.RELATIVE_TO_SELF, 0.5f
+                0.95f, 1f,
+                0.95f, 1f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
         )
         mAnimationEnd.duration = 500
         mAnimationEnd.fillAfter = true

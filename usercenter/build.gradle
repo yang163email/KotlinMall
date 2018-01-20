@@ -8,9 +8,9 @@ apply plugin: 'kotlin-android-extensions'
 
 kapt {
     generateStubs = true    //使用kotlin编译dagger2，不加上这句，不能运行
-//    arguments {
-//        arg("moduleName", project.getName())
-//    }
+    arguments {
+        arg("moduleName", project.getName())
+    }
 }
 android {
     compileSdkVersion 26
@@ -59,4 +59,6 @@ dependencies {
     api project(':provider')
     //dagger2
     kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+    //arouter
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 }
