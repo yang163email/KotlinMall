@@ -1,8 +1,11 @@
 package com.yan.base.ui.activity
 
 import android.os.Bundle
+import android.view.View
+import android.widget.FrameLayout
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity
 import com.yan.base.common.AppManager
+import org.jetbrains.anko.find
 
 /**
  *  @author      : yan
@@ -12,6 +15,11 @@ import com.yan.base.common.AppManager
 open class BaseActivity : RxAppCompatActivity() {
 
     protected val TAG = javaClass.simpleName
+    val contentView: View
+        get() {
+            val content = find<FrameLayout>(android.R.id.content)
+            return content.getChildAt(0)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -3,7 +3,7 @@ package com.yan.base.widgets
 import android.text.Editable
 import android.text.TextWatcher
 import com.yan.base.alias.BeforeTextChanged
-import com.yan.base.alias.Type_Unit
+import com.yan.base.alias.Editable_Unit
 
 /**
  *  @author      : yan
@@ -14,7 +14,7 @@ class TextWatcherHelper : TextWatcher {
 
     private var beforeTextChanged: BeforeTextChanged? = null
     private var onTextChanged: BeforeTextChanged? = null
-    private var editable: Type_Unit<Editable>? = null
+    private var editable: Editable_Unit? = null
 
     fun beforeTextChanged(beforeTextChanged: BeforeTextChanged) {
         this.beforeTextChanged = beforeTextChanged
@@ -24,7 +24,7 @@ class TextWatcherHelper : TextWatcher {
         this.onTextChanged = onTextChanged
     }
 
-    fun afterTextChanged(editable: Type_Unit<Editable>) {
+    fun afterTextChanged(editable: Editable_Unit) {
         this.editable = editable
     }
 

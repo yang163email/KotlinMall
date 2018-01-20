@@ -9,7 +9,7 @@
             android:paddingLeft="@dimen/common_padding">
 
             <EditText
-                android:id="@+id/mSearchEt"
+                android:id="@+id/mEtSearch"
                 style="@style/SearchHeaderEtStyle"
                 android:cursorVisible="false"
                 android:editable="false"

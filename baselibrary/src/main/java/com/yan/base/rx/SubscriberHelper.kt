@@ -1,7 +1,8 @@
 package com.yan.base.rx
 
-import com.yan.base.alias.None_Unit
-import com.yan.base.alias.Type_Unit
+import com.yan.base.alias.T0_Unit
+import com.yan.base.alias.T1_Unit
+import com.yan.base.alias.Throwable_Unit
 import com.yan.base.presenter.view.BaseView
 import rx.Subscriber
 
@@ -12,19 +13,19 @@ import rx.Subscriber
  */
 class SubscriberHelper<T>(private val baseView: BaseView) : Subscriber<T>() {
 
-    private var onNextListener: Type_Unit<T>? = null
-    private var onErrorListener: Type_Unit<Throwable>? = null
-    private var onCompleteListener: None_Unit? = null
+    private var onNextListener: T1_Unit<T>? = null
+    private var onErrorListener: Throwable_Unit? = null
+    private var onCompleteListener: T0_Unit? = null
 
-    fun onNext(next: Type_Unit<T>) {
+    fun onNext(next: T1_Unit<T>) {
         onNextListener = next
     }
 
-    fun onError(error: Type_Unit<Throwable>) {
+    fun onError(error: Throwable_Unit) {
         onErrorListener = error
     }
 
-    fun onComplete(complete: None_Unit) {
+    fun onComplete(complete: T0_Unit) {
         onCompleteListener = complete
     }
 
