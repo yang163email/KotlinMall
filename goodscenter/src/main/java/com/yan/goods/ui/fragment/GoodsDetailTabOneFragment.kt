@@ -18,6 +18,7 @@ import com.yan.base.widgets.BannerImageLoader
 import com.yan.goods.R
 import com.yan.goods.common.GoodsConstant
 import com.yan.goods.data.protocol.Goods
+import com.yan.goods.event.AddCartEvent
 import com.yan.goods.event.GoodsDetailImageEvent
 import com.yan.goods.event.SkuChangedEvent
 import com.yan.goods.injection.component.DaggerGoodsComponent
@@ -28,6 +29,7 @@ import com.yan.goods.widget.GoodsSkuPopView
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
+import org.jetbrains.anko.support.v4.toast
 
 /**
  *  @author      : yan
@@ -37,6 +39,8 @@ import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
 class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), GoodsDetailView {
 
     private lateinit var mSkuPop: GoodsSkuPopView
+
+    private var mCurrGoods: Goods? = null
 
     private lateinit var mAnimationStart: ScaleAnimation
     private lateinit var mAnimationEnd: ScaleAnimation
@@ -111,13 +115,17 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         mAnimationEnd.fillAfter = true
     }
 
-
     @SuppressLint("SetTextI18n")
     private fun initObserve() {
         Bus.observe<SkuChangedEvent>()
                 .subscribe {
                     mTvSkuSelected.text = mSkuPop.getSelectSku() +
                             GoodsConstant.SKU_SEPARATOR + mSkuPop.getSelectCount() + "件"
+                }.registerInBus(this)
+
+        Bus.observe<AddCartEvent>()
+                .subscribe {
+                    addCart()
                 }.registerInBus(this)
     }
 
@@ -126,6 +134,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
     }
 
     override fun onGetGoodsDetailResult(result: Goods) {
+        mCurrGoods = result
         setBanner(result)
         mTvGoodsDesc.text = result.goodsDesc
         mTvGoodsPrice.text = YuanFenConverter.changeF2YWithUnit(result.goodsDefaultPrice)
@@ -150,4 +159,17 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
                 .start()
     }
 
+    /**
+     * 添加到购物车
+     */
+    private fun addCart() {
+        mCurrGoods?.let {
+            mPresenter.addCart(it.id, it.goodsDesc, it.goodsDefaultIcon,
+                    it.goodsDefaultPrice, mSkuPop.getSelectCount(), mSkuPop.getSelectSku())
+        }
+    }
+
+    override fun onAddCartResult(result: Int) {
+        toast("Cart----$result")
+    }
 }

@@ -15,6 +15,7 @@ import com.yan.base.ext.onTextChangedListener
 import com.yan.goods.R
 import com.yan.goods.common.GoodsConstant
 import com.yan.goods.data.protocol.GoodsSku
+import com.yan.goods.event.AddCartEvent
 import com.yan.goods.event.SkuChangedEvent
 import com.yan.goods.ext.getEditText
 import kotlinx.android.synthetic.main.layout_sku_pop.view.*
@@ -76,7 +77,7 @@ class GoodsSkuPopView(val context: Activity) : PopupWindow(context), View.OnClic
                 }
 
         mRootView.mBtnAddCart.onClick {
-            //            Bus.send(AddCartEvent())
+            Bus.send(AddCartEvent())
             dismiss()
         }
     }

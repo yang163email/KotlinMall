@@ -2,6 +2,7 @@ package com.yan.goods.injection.component
 
 import com.yan.base.injection.PerComponentScope
 import com.yan.base.injection.component.ActivityComponent
+import com.yan.goods.injection.module.CartModule
 import com.yan.goods.injection.module.GoodsModule
 import com.yan.goods.ui.activity.GoodsActivity
 import com.yan.goods.ui.fragment.GoodsDetailTabOneFragment
@@ -14,7 +15,7 @@ import dagger.Component
  */
 @PerComponentScope
 @Component(dependencies = arrayOf(ActivityComponent::class),
-        modules = arrayOf(GoodsModule::class))
+        modules = arrayOf(GoodsModule::class, CartModule::class))
 interface GoodsComponent {
 
     fun inject(activity: GoodsActivity)

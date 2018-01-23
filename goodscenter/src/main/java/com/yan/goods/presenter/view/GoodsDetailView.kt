@@ -11,4 +11,5 @@ import com.yan.goods.data.protocol.Goods
 interface GoodsDetailView : BaseView {
 
     fun onGetGoodsDetailResult(result: Goods)
+    fun onAddCartResult(result: Int)
 }

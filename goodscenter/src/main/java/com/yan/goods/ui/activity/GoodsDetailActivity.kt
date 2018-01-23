@@ -3,12 +3,13 @@ package com.yan.goods.ui.activity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.View
-import com.alibaba.android.arouter.launcher.ARouter
+import com.eightbitlab.rxbus.Bus
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseActivity
 import com.yan.goods.R
+import com.yan.goods.event.AddCartEvent
 import com.yan.goods.ui.adapter.GoodsDetailVpAdapter
-import com.yan.provider.router.RouterPath
+import com.yan.provider.common.afterLogin
 import kotlinx.android.synthetic.main.activity_goods_detail.*
 
 /**
@@ -39,7 +40,9 @@ class GoodsDetailActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when(v.id) {
             R.id.mBtnAddCart -> {
-                ARouter.getInstance().build(RouterPath.UserCenter.PATH_LOGIN).navigation()
+                afterLogin {
+                    Bus.send(AddCartEvent())
+                }
             }
         }
     }
