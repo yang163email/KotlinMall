@@ -21,6 +21,7 @@ import com.yan.goods.data.protocol.Goods
 import com.yan.goods.event.AddCartEvent
 import com.yan.goods.event.GoodsDetailImageEvent
 import com.yan.goods.event.SkuChangedEvent
+import com.yan.goods.event.UpdateCartSizeEvent
 import com.yan.goods.injection.component.DaggerGoodsComponent
 import com.yan.goods.injection.module.GoodsModule
 import com.yan.goods.presenter.GoodsDetailPresenter
@@ -29,7 +30,6 @@ import com.yan.goods.widget.GoodsSkuPopView
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
-import org.jetbrains.anko.support.v4.toast
 
 /**
  *  @author      : yan
@@ -170,6 +170,11 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
     }
 
     override fun onAddCartResult(result: Int) {
-        toast("Cart----$result")
+        Bus.send(UpdateCartSizeEvent())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Bus.unregister(this)
     }
 }
