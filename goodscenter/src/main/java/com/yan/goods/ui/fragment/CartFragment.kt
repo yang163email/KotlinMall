@@ -9,6 +9,7 @@ import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.utils.YuanFenConverter
+import com.yan.base.ext.onClick
 import com.yan.base.ext.onClick2
 import com.yan.base.ext.setVisible
 import com.yan.base.ext.startLoading
@@ -42,6 +43,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initListener()
         initObserve()
         loadData()
     }
@@ -61,11 +63,30 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
             layoutManager = LinearLayoutManager(context)
             adapter = mAdapter
         }
+    }
+
+    private fun initListener() {
         mCbAllChecked.onClick2 { cb ->
             mAdapter.dataList.forEach { it.isSelected = cb.isChecked }
             mAdapter.notifyDataSetChanged()
             updateTotalPrice()
         }
+        mHeaderBar.getRightView().onClick {
+            refreshEditStatus()
+        }
+    }
+
+    private fun refreshEditStatus() {
+        //如果headerbar的右侧文字是“编辑”，返回true
+        val isEditStatus = getString(R.string.common_edit) == mHeaderBar.getRightText()
+        mTvTotalPrice.setVisible(!isEditStatus)
+        mBtnSettleAccounts.setVisible(!isEditStatus)
+        mBtnDelete.setVisible(isEditStatus)
+
+        //修改文字
+        mHeaderBar.getRightView().text =
+                if (isEditStatus) getString(R.string.common_complete)
+                else getString(R.string.common_edit)
     }
 
     private fun initObserve() {
