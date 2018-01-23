@@ -4,6 +4,7 @@ import com.yan.base.data.net.RetrofitFactory
 import com.yan.base.data.protocol.BaseResp
 import com.yan.goods.data.api.CartApi
 import com.yan.goods.data.protocol.AddCartReq
+import com.yan.goods.data.protocol.CartGoods
 import rx.Observable
 import javax.inject.Inject
 
@@ -22,4 +23,6 @@ class CartRepository @Inject constructor() {
             RetrofitFactory.instance.create(CartApi::class.java)
                     .addCart(AddCartReq(goodsId, goodsDesc, goodsIcon, goodsPrice, goodsCount, goodsSku))
 
+    fun getCartList(): Observable<BaseResp<MutableList<CartGoods>?>> =
+            RetrofitFactory.instance.create(CartApi::class.java).getCartList()
 }

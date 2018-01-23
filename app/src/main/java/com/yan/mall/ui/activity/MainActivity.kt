@@ -9,6 +9,7 @@ import com.yan.base.ui.activity.BaseActivity
 import com.yan.base.utils.AppPrefsUtils
 import com.yan.goods.common.GoodsConstant
 import com.yan.goods.event.UpdateCartSizeEvent
+import com.yan.goods.ui.fragment.CartFragment
 import com.yan.goods.ui.fragment.CategoryFragment
 import com.yan.mall.R
 import com.yan.mall.ui.fragment.HomeFragment
@@ -25,7 +26,7 @@ class MainActivity : BaseActivity() {
 
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
-    private val mCartFragment by lazy { HomeFragment() }
+    private val mCartFragment by lazy { CartFragment() }
     private val mMsgFragment by lazy { HomeFragment() }
     private val mMineFragment by lazy { MineFragment() }
 

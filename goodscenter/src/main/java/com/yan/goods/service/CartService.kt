@@ -1,5 +1,6 @@
 package com.yan.goods.service
 
+import com.yan.goods.data.protocol.CartGoods
 import rx.Observable
 
 /**
@@ -15,4 +16,8 @@ interface CartService {
     fun addCart(goodsId: Int, goodsDesc: String, goodsIcon: String, goodsPrice: Long,
                 goodsCount: Int, goodsSku: String): Observable<Int>
 
+    /**
+     * 获取购物车列表
+     */
+    fun getCartList(): Observable<MutableList<CartGoods>?>
 }

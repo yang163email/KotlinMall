@@ -3,6 +3,7 @@ package com.yan.goods.injection.component
 import com.yan.base.injection.PerComponentScope
 import com.yan.base.injection.component.ActivityComponent
 import com.yan.goods.injection.module.CartModule
+import com.yan.goods.ui.fragment.CartFragment
 import dagger.Component
 
 /**
@@ -15,4 +16,5 @@ import dagger.Component
         modules = arrayOf(CartModule::class))
 interface CartComponent {
 
+    fun inject(fragment: CartFragment)
 }

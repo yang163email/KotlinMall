@@ -1,6 +1,7 @@
 package com.yan.goods.service.impl
 
 import com.yan.base.ext.convert
+import com.yan.goods.data.protocol.CartGoods
 import com.yan.goods.data.repository.CartRepository
 import com.yan.goods.service.CartService
 import rx.Observable
@@ -20,5 +21,9 @@ class CartServiceImpl @Inject constructor(): CartService {
                          goodsCount: Int, goodsSku: String): Observable<Int> {
         return repository.addCart(goodsId, goodsDesc, goodsIcon, goodsPrice, goodsCount, goodsSku)
                 .convert()
+    }
+
+    override fun getCartList(): Observable<MutableList<CartGoods>?> {
+        return repository.getCartList().convert()
     }
 }
