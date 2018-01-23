@@ -5,6 +5,7 @@ import com.yan.base.data.protocol.BaseResp
 import com.yan.goods.data.api.CartApi
 import com.yan.goods.data.protocol.AddCartReq
 import com.yan.goods.data.protocol.CartGoods
+import com.yan.goods.data.protocol.DeleteCartReq
 import rx.Observable
 import javax.inject.Inject
 
@@ -25,4 +26,7 @@ class CartRepository @Inject constructor() {
 
     fun getCartList(): Observable<BaseResp<MutableList<CartGoods>?>> =
             RetrofitFactory.instance.create(CartApi::class.java).getCartList()
+
+    fun deleteCartList(cartIdList: List<Int>): Observable<BaseResp<String>> =
+            RetrofitFactory.instance.create(CartApi::class.java).deleteCartList(DeleteCartReq(cartIdList))
 }

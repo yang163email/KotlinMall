@@ -1,5 +1,6 @@
 package com.yan.goods.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ import com.yan.goods.presenter.CartListPresenter
 import com.yan.goods.presenter.view.CartListView
 import com.yan.goods.ui.adapter.CartGoodsAdapter
 import kotlinx.android.synthetic.main.fragment_cart.*
+import org.jetbrains.anko.support.v4.toast
 
 /**
  *  @author      : yan
@@ -45,6 +47,10 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         initView()
         initListener()
         initObserve()
+    }
+
+    override fun onStart() {
+        super.onStart()
         loadData()
     }
 
@@ -74,6 +80,13 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         mHeaderBar.getRightView().onClick {
             refreshEditStatus()
         }
+        mBtnDelete.onClick {
+            val cartIdList = mAdapter.dataList.asSequence()
+                    .filter { it.isSelected }
+                    .map { it.id }.toMutableList()
+            if (cartIdList.isEmpty()) toast("请选择需要删除的数据")
+            else mPresenter.deleteCartList(cartIdList)
+        }
     }
 
     private fun refreshEditStatus() {
@@ -102,6 +115,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
                 }.registerInBus(this)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateTotalPrice() {
         mTotalPrice = mAdapter.dataList.asSequence()
                 .filter { it.isSelected }
@@ -115,7 +129,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         mPresenter.getCartList()
     }
 
-    override fun onGetGetCartListResult(result: MutableList<CartGoods>?) {
+    override fun onGetCartListResult(result: MutableList<CartGoods>?) {
         if (result != null && result.size > 0) {
             mAdapter.setData(result)
             mHeaderBar.getRightView().setVisible(true)
@@ -125,6 +139,11 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
             mHeaderBar.getRightView().setVisible(false)
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
         }
+    }
+
+    override fun onDeleteCartListResult(result: Boolean) {
+        toast("删除成功")
+        loadData()
     }
 
     override fun onDestroyView() {

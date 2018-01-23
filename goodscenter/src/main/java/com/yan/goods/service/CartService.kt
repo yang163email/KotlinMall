@@ -20,4 +20,9 @@ interface CartService {
      * 获取购物车列表
      */
     fun getCartList(): Observable<MutableList<CartGoods>?>
+
+    /**
+     * 删除购物车商品
+     */
+    fun deleteCartList(cartIdList: List<Int>): Observable<Boolean>
 }

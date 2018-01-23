@@ -1,6 +1,7 @@
 package com.yan.goods.service.impl
 
 import com.yan.base.ext.convert
+import com.yan.base.ext.convertBoolean
 import com.yan.goods.data.protocol.CartGoods
 import com.yan.goods.data.repository.CartRepository
 import com.yan.goods.service.CartService
@@ -25,5 +26,9 @@ class CartServiceImpl @Inject constructor(): CartService {
 
     override fun getCartList(): Observable<MutableList<CartGoods>?> {
         return repository.getCartList().convert()
+    }
+
+    override fun deleteCartList(cartIdList: List<Int>): Observable<Boolean> {
+        return repository.deleteCartList(cartIdList).convertBoolean()
     }
 }

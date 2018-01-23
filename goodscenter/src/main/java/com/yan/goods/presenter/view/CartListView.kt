@@ -10,5 +10,6 @@ import com.yan.goods.data.protocol.CartGoods
  */
 interface CartListView : BaseView {
 
-    fun onGetGetCartListResult(result: MutableList<CartGoods>?)
+    fun onGetCartListResult(result: MutableList<CartGoods>?)
+    fun onDeleteCartListResult(result: Boolean)
 }
