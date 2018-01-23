@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
+import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ext.onClick2
 import com.yan.base.ext.setVisible
 import com.yan.base.ext.startLoading
@@ -15,6 +16,7 @@ import com.yan.base.ui.fragment.BaseMvpFragment
 import com.yan.goods.R
 import com.yan.goods.data.protocol.CartGoods
 import com.yan.goods.event.CartAllCheckedEvent
+import com.yan.goods.event.UpdateTotalPriceEvent
 import com.yan.goods.injection.component.DaggerCartComponent
 import com.yan.goods.injection.module.CartModule
 import com.yan.goods.presenter.CartListPresenter
@@ -30,6 +32,7 @@ import kotlinx.android.synthetic.main.fragment_cart.*
 class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
     private lateinit var mAdapter: CartGoodsAdapter
+    private var mTotalPrice: Long = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -61,6 +64,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         mCbAllChecked.onClick2 { cb ->
             mAdapter.dataList.forEach { it.isSelected = cb.isChecked }
             mAdapter.notifyDataSetChanged()
+            updateTotalPrice()
         }
     }
 
@@ -68,7 +72,21 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         Bus.observe<CartAllCheckedEvent>()
                 .subscribe {
                     mCbAllChecked.isChecked = it.isAllChecked
+                    updateTotalPrice()
                 }.registerInBus(this)
+
+        Bus.observe<UpdateTotalPriceEvent>()
+                .subscribe {
+                    updateTotalPrice()
+                }.registerInBus(this)
+    }
+
+    private fun updateTotalPrice() {
+        mTotalPrice = mAdapter.dataList.asSequence()
+                .filter { it.isSelected }
+                .map { it.goodsCount * it.goodsPrice }
+                .sum()
+        mTvTotalPrice.text = "合计:${YuanFenConverter.changeF2YWithUnit(mTotalPrice)}"
     }
 
     private fun loadData() {

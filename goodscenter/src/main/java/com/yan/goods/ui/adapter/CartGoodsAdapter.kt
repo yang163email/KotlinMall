@@ -14,6 +14,7 @@ import com.yan.base.ui.adapter.BaseRecyclerViewAdapter
 import com.yan.goods.R
 import com.yan.goods.data.protocol.CartGoods
 import com.yan.goods.event.CartAllCheckedEvent
+import com.yan.goods.event.UpdateTotalPriceEvent
 import com.yan.goods.ext.getEditText
 import com.yan.goods.ui.adapter.CartGoodsAdapter.ViewHolder
 import kotlinx.android.synthetic.main.layout_cart_goods_item.view.*
@@ -58,8 +59,10 @@ class CartGoodsAdapter(context: Context)
             }
             //商品数量变化监听
             mBtnGoodsCount.getEditText().onTextChangedListener {
-                onTextChanged { _, _, _, _ ->
-
+                onTextChanged { cs, _, _, _ ->
+                    model.goodsCount = cs.toString().toInt()
+                    if (mCbChecked.isChecked)   //只有选中的时候才发送过去
+                        Bus.send(UpdateTotalPriceEvent())
                 }
             }
         }
