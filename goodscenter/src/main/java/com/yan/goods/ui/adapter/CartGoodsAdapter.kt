@@ -5,13 +5,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.eightbitlab.rxbus.Bus
 import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ext.loadUrl
-import com.yan.base.ext.onClick
+import com.yan.base.ext.onClick2
 import com.yan.base.ext.onTextChangedListener
 import com.yan.base.ui.adapter.BaseRecyclerViewAdapter
 import com.yan.goods.R
 import com.yan.goods.data.protocol.CartGoods
+import com.yan.goods.event.CartAllCheckedEvent
 import com.yan.goods.ext.getEditText
 import com.yan.goods.ui.adapter.CartGoodsAdapter.ViewHolder
 import kotlinx.android.synthetic.main.layout_cart_goods_item.view.*
@@ -49,8 +51,10 @@ class CartGoodsAdapter(context: Context)
             }
 
             //选中按钮事件
-            mCbChecked.onClick {
-
+            mCbChecked.onClick2 {
+                model.isSelected = it.isChecked
+                val isAllSelected = dataList.all { it.isSelected }
+                Bus.send(CartAllCheckedEvent(isAllSelected))
             }
             //商品数量变化监听
             mBtnGoodsCount.getEditText().onTextChangedListener {

@@ -5,12 +5,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
+import com.yan.base.ext.onClick2
 import com.yan.base.ext.setVisible
 import com.yan.base.ext.startLoading
 import com.yan.base.ui.fragment.BaseMvpFragment
 import com.yan.goods.R
 import com.yan.goods.data.protocol.CartGoods
+import com.yan.goods.event.CartAllCheckedEvent
 import com.yan.goods.injection.component.DaggerCartComponent
 import com.yan.goods.injection.module.CartModule
 import com.yan.goods.presenter.CartListPresenter
@@ -35,6 +39,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initObserve()
         loadData()
     }
 
@@ -53,6 +58,17 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
             layoutManager = LinearLayoutManager(context)
             adapter = mAdapter
         }
+        mCbAllChecked.onClick2 { cb ->
+            mAdapter.dataList.forEach { it.isSelected = cb.isChecked }
+            mAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun initObserve() {
+        Bus.observe<CartAllCheckedEvent>()
+                .subscribe {
+                    mCbAllChecked.isChecked = it.isAllChecked
+                }.registerInBus(this)
     }
 
     private fun loadData() {
@@ -72,4 +88,8 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Bus.unregister(this)
+    }
 }
