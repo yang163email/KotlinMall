@@ -9,6 +9,7 @@ import com.kennyc.view.MultiStateView
 import com.yan.base.R
 import com.yan.base.alias.Ex_T0_Unit
 import com.yan.base.alias.T0_Boolean
+import com.yan.base.alias.T1_Unit
 import com.yan.base.alias.View_Unit
 import com.yan.base.utils.GlideUtils
 import com.yan.base.widgets.TextWatcherHelper
@@ -24,6 +25,13 @@ import org.jetbrains.anko.find
  * 让setOnClickListener写起来更短
  */
 fun View.onClick(block: View_Unit) {
+    setOnClickListener { block(this) }
+}
+
+/**
+ * 可以识别具体类型的Click事件
+ */
+fun <T : View> T.onClick2(block: T1_Unit<T>) {
     setOnClickListener { block(this) }
 }
 

@@ -3,7 +3,13 @@ package com.yan.mall.ui.activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
 import com.yan.base.ui.activity.BaseActivity
+import com.yan.base.utils.AppPrefsUtils
+import com.yan.goods.common.GoodsConstant
+import com.yan.goods.event.UpdateCartSizeEvent
+import com.yan.goods.ui.fragment.CartFragment
 import com.yan.goods.ui.fragment.CategoryFragment
 import com.yan.mall.R
 import com.yan.mall.ui.fragment.HomeFragment
@@ -20,7 +26,7 @@ class MainActivity : BaseActivity() {
 
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
-    private val mCartFragment by lazy { HomeFragment() }
+    private val mCartFragment by lazy { CartFragment() }
     private val mMsgFragment by lazy { HomeFragment() }
     private val mMineFragment by lazy { MineFragment() }
 
@@ -30,12 +36,13 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mBottomNavBar.checkCartBadge(20)
         mBottomNavBar.checkMsgBadge(false)
 
         initFragment()
         initBottomNavBar()
         changeFragment(0)
+        initObserve()
+        loadCartSize()
     }
 
     private fun initFragment() {
@@ -72,5 +79,21 @@ class MainActivity : BaseActivity() {
         mStack.forEach { ft.hide(it) }
         ft.show(mStack[position])
         ft.commit()
+    }
+
+    private fun initObserve() {
+        Bus.observe<UpdateCartSizeEvent>()
+                .subscribe {
+                    loadCartSize()
+                }.registerInBus(this)
+    }
+
+    private fun loadCartSize() {
+        mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 }
