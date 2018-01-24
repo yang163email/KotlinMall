@@ -156,6 +156,10 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         toast(result.toString())
     }
 
+    fun setBackVisible(isVisible: Boolean) {
+        mHeaderBar.getLeftView().setVisible(isVisible)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         Bus.unregister(this)

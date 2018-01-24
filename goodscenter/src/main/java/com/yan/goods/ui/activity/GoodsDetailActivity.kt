@@ -16,6 +16,7 @@ import com.yan.goods.event.UpdateCartSizeEvent
 import com.yan.goods.ui.adapter.GoodsDetailVpAdapter
 import com.yan.provider.common.afterLogin
 import kotlinx.android.synthetic.main.activity_goods_detail.*
+import org.jetbrains.anko.startActivity
 import q.rorbin.badgeview.QBadgeView
 
 /**
@@ -49,6 +50,7 @@ class GoodsDetailActivity : BaseActivity(), View.OnClickListener {
     private fun initListener() {
         mIvLeft.onClick(this)
         mBtnAddCart.onClick(this)
+        mTvEnterCart.onClick(this)
     }
 
     private fun initView() {
@@ -76,6 +78,7 @@ class GoodsDetailActivity : BaseActivity(), View.OnClickListener {
                     Bus.send(AddCartEvent())
                 }
             }
+            R.id.mTvEnterCart -> startActivity<CartActivity>()
         }
     }
 
