@@ -87,6 +87,11 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
             if (cartIdList.isEmpty()) toast("请选择需要删除的数据")
             else mPresenter.deleteCartList(cartIdList)
         }
+        mBtnSettleAccounts.onClick {
+            val submitList = mAdapter.dataList.filter { it.isSelected }
+            if (submitList.isEmpty()) toast("请选择需要提交的数据")
+            else mPresenter.submitCart(submitList, mTotalPrice)
+        }
     }
 
     private fun refreshEditStatus() {
@@ -143,7 +148,12 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
     override fun onDeleteCartListResult(result: Boolean) {
         toast("删除成功")
+        refreshEditStatus() //删除成功之后更新头部文字
         loadData()
+    }
+
+    override fun onSubmitCartListResult(result: Int) {
+        toast(result.toString())
     }
 
     override fun onDestroyView() {

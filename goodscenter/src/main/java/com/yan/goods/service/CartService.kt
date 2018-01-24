@@ -25,4 +25,9 @@ interface CartService {
      * 删除购物车商品
      */
     fun deleteCartList(cartIdList: List<Int>): Observable<Boolean>
+
+    /**
+     * 提交购物车
+     */
+    fun submitCart(goodsList: List<CartGoods>, totalPrice: Long): Observable<Int>
 }

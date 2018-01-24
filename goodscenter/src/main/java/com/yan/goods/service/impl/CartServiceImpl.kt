@@ -31,4 +31,9 @@ class CartServiceImpl @Inject constructor(): CartService {
     override fun deleteCartList(cartIdList: List<Int>): Observable<Boolean> {
         return repository.deleteCartList(cartIdList).convertBoolean()
     }
+
+    override fun submitCart(goodsList: List<CartGoods>, totalPrice: Long): Observable<Int> {
+        return repository.submitCart(goodsList, totalPrice).convert()
+    }
+
 }

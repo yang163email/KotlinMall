@@ -5,6 +5,7 @@ import com.yan.base.ext.execute2
 import com.yan.base.presenter.BasePresenter
 import com.yan.base.utils.AppPrefsUtils
 import com.yan.goods.common.GoodsConstant
+import com.yan.goods.data.protocol.CartGoods
 import com.yan.goods.event.UpdateCartSizeEvent
 import com.yan.goods.presenter.view.CartListView
 import com.yan.goods.service.CartService
@@ -43,6 +44,18 @@ class CartListPresenter @Inject constructor() : BasePresenter<CartListView>() {
         cartService.deleteCartList(cartIdList).execute2(lifecycleProvider, mView) {
             onNext {
                 mView.onDeleteCartListResult(it)
+            }
+        }
+    }
+
+    fun submitCart(goodsList: List<CartGoods>, totalPrice: Long) {
+        //业务逻辑
+        if (!checkNetWork()) return
+        mView.showLoading()
+
+        cartService.submitCart(goodsList, totalPrice).execute2(lifecycleProvider, mView) {
+            onNext {
+                mView.onSubmitCartListResult(it)
             }
         }
     }
