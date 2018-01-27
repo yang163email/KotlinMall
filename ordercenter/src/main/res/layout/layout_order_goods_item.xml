@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapWrap.Vertical"
+    android:background="@drawable/border_all"
+    android:padding="@dimen/common_padding">
+
+    <ImageView
+        android:id="@+id/mIvGoodsIcon"
+        android:layout_width="@dimen/common_icon_width"
+        android:layout_height="@dimen/common_icon_height"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/mTvGoodsDesc"
+        style="@style/WrapWrap"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:layout_toRightOf="@id/mIvGoodsIcon"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/text_light_dark" />
+
+    <TextView
+        android:id="@+id/mTvGoodsSku"
+        style="@style/WrapWrap"
+        android:layout_alignLeft="@id/mTvGoodsDesc"
+        android:layout_below="@id/mTvGoodsDesc"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:textSize="@dimen/text_small_size" />
+
+    <TextView
+        android:id="@+id/mTvGoodsPrice"
+        style="@style/MatchWrap"
+        android:layout_alignLeft="@id/mTvGoodsSku"
+        android:layout_below="@id/mTvGoodsSku"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:textColor="@color/common_red" />
+
+    <TextView
+        android:id="@+id/mTvGoodsCount"
+        style="@style/WrapWrap"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/mTvGoodsPrice"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/text_small_size" />
+</RelativeLayout>
