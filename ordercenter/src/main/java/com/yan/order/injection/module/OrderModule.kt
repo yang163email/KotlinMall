@@ -8,7 +8,7 @@ import dagger.Provides
 /**
  *  @author      : yan
  *  @date        : 2018/1/15 16:08
- *  @description : 提供商品相关字段的module
+ *  @description : 提供订单相关字段的module
  */
 @Module
 class OrderModule {

@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.kotlin.base.utils.YuanFenConverter
+import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.order.R
 import com.yan.order.data.protocol.Order
@@ -17,6 +18,7 @@ import com.yan.order.ui.adapter.OrderGoodsAdapter
 import com.yan.provider.common.ProviderConstant
 import com.yan.provider.router.RouterPath
 import kotlinx.android.synthetic.main.activity_order_confirm.*
+import org.jetbrains.anko.startActivity
 
 /**
  *  @author      : yan
@@ -50,6 +52,9 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), OrderConf
     }
 
     private fun initView() {
+        mTvSelectShip.onClick {
+            startActivity<ShipAddressActivity>()
+        }
         mAdapter = OrderGoodsAdapter(this)
         mRvOrderGoods.apply {
             layoutManager = LinearLayoutManager(this@OrderConfirmActivity)

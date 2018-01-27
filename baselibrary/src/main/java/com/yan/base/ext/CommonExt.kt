@@ -95,3 +95,12 @@ fun MultiStateView.startLoading() {
         (animBackground as AnimationDrawable).start()
     }
 }
+
+/**
+ * 判断EditText的text是否不为空
+ */
+fun EditText.isNullOrEmpty(): Boolean =
+        text?.trim().isNullOrEmpty()
+
+val EditText.textStr: String
+    get() = text.trim().toString()
