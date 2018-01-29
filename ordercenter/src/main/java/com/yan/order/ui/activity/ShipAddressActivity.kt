@@ -3,12 +3,14 @@ package com.yan.order.ui.activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.bigkoo.alertview.AlertView
+import com.eightbitlab.rxbus.Bus
 import com.kennyc.view.MultiStateView
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.order.R
 import com.yan.order.common.OrderConstant
 import com.yan.order.data.protocol.ShipAddress
+import com.yan.order.event.SelectAddressEvent
 import com.yan.order.injection.component.DaggerShipAddressComponent
 import com.yan.order.injection.module.ShipAddressModule
 import com.yan.order.presenter.ShipAddressPresenter
@@ -50,7 +52,22 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
     }
 
     private fun initView() {
+        initAdapter()
+        mRvAddress.apply {
+            layoutManager = LinearLayoutManager(this@ShipAddressActivity)
+            adapter = mAdapter
+        }
+        mBtnAddAddress.onClick {
+            startActivity<ShipAddressEditActivity>()
+        }
+    }
+
+    private fun initAdapter() {
         mAdapter = ShipAddressAdapter(this)
+        mAdapter.setOnItemClickListener { shipAddress, _ ->
+            Bus.send(SelectAddressEvent(shipAddress))
+            finish()
+        }
         mAdapter.mOptClickListener = object : ShipAddressAdapter.OnOptClickListener {
             override fun onSetDefault(address: ShipAddress) {
                 mPresenter.editShipAddress(address)
@@ -63,13 +80,6 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
             override fun onDelete(address: ShipAddress) {
                 clickDelete(address.id)
             }
-        }
-        mRvAddress.apply {
-            layoutManager = LinearLayoutManager(this@ShipAddressActivity)
-            adapter = mAdapter
-        }
-        mBtnAddAddress.onClick {
-            startActivity<ShipAddressEditActivity>()
         }
     }
 

@@ -34,7 +34,7 @@
             style="@style/OrderShipName" />
 
         <TextView
-            android:id="@+id/mShipAddressTv"
+            android:id="@+id/mTvShipAddress"
             style="@style/OrderShipAddress"
             android:layout_below="@id/mTvShipName"
             android:background="@null"

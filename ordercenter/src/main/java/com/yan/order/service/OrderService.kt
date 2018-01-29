@@ -11,7 +11,12 @@ import rx.Observable
 interface OrderService {
 
     /**
-     * 提交订单
+     * 根据ID查询订单
      */
     fun getOrderById(orderId: Int): Observable<Order>
+
+    /**
+     * 提交订单
+     */
+    fun submitOrder(order: Order): Observable<Boolean>
 }

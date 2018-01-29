@@ -1,6 +1,7 @@
 package com.yan.order.service.impl
 
 import com.yan.base.ext.convert
+import com.yan.base.ext.convertBoolean
 import com.yan.order.data.protocol.Order
 import com.yan.order.data.repository.OrderRepository
 import com.yan.order.service.OrderService
@@ -19,4 +20,8 @@ class OrderServiceImpl @Inject constructor() : OrderService {
 
     override fun getOrderById(orderId: Int): Observable<Order> =
             repository.getOrderById(orderId).convert()
+
+    override fun submitOrder(order: Order): Observable<Boolean> =
+            repository.submitOrder(order).convertBoolean()
+
 }
