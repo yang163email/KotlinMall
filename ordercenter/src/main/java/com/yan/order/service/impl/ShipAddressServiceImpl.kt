@@ -27,4 +27,7 @@ class ShipAddressServiceImpl @Inject constructor() : ShipAddressService {
 
     override fun editShipAddress(address: ShipAddress): Observable<Boolean> =
             repository.editShipAddress(address).convertBoolean()
+
+    override fun deleteShipAddress(id: Int): Observable<Boolean> =
+            repository.deleteShipAddress(id).convertBoolean()
 }

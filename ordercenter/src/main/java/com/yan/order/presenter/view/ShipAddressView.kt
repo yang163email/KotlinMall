@@ -12,4 +12,6 @@ interface ShipAddressView : BaseView {
 
     fun onGetShipAddressListResult(result: MutableList<ShipAddress>?)
     fun onEditShipAddressResult(result: Boolean)
+    fun onDeleteShipAddressResult(result: Boolean)
+
 }

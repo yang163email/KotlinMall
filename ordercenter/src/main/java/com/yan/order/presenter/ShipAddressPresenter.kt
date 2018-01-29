@@ -36,4 +36,14 @@ class ShipAddressPresenter @Inject constructor() : BasePresenter<ShipAddressView
                     onNext { mView.onEditShipAddressResult(it) }
                 }
     }
+
+    fun deleteShipAddress(id: Int) {
+        if (!checkNetWork()) return
+        mView.showLoading()
+
+        orderService.deleteShipAddress(id)
+                .execute2(lifecycleProvider, mView) {
+                    onNext { mView.onDeleteShipAddressResult(it) }
+                }
+    }
 }

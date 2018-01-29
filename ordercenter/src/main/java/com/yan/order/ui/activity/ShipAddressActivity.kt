@@ -2,6 +2,7 @@ package com.yan.order.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.bigkoo.alertview.AlertView
 import com.kennyc.view.MultiStateView
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
@@ -25,6 +26,7 @@ import org.jetbrains.anko.toast
 class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddressView {
 
     private lateinit var mAdapter: ShipAddressAdapter
+    private var alertView: AlertView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +61,7 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
             }
 
             override fun onDelete(address: ShipAddress) {
-                toast("删除")
+                clickDelete(address.id)
             }
         }
         mRvAddress.apply {
@@ -75,6 +77,23 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
         mPresenter.getShipAddressList()
     }
 
+    private fun clickDelete(id: Int) {
+        alertView = AlertView.Builder()
+                .setContext(this)
+                .setStyle(AlertView.Style.Alert)
+                .setTitle("删除")
+                .setMessage("确认删除改地址？")
+                .setCancelText("取消")
+                .setOthers(arrayOf("确定"))
+                .setOnItemClickListener { o, position ->
+                    if (position == 0)
+                        mPresenter.deleteShipAddress(id)
+                }
+                .build()
+                .setCancelable(true)
+        alertView?.show()
+    }
+
     override fun onGetShipAddressListResult(result: MutableList<ShipAddress>?) {
         if (result != null && result.size > 0) {
             mAdapter.setData(result)
@@ -86,6 +105,11 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
 
     override fun onEditShipAddressResult(result: Boolean) {
         toast("设置默认成功")
+        loadData()
+    }
+
+    override fun onDeleteShipAddressResult(result: Boolean) {
+        toast("删除成功")
         loadData()
     }
 }
