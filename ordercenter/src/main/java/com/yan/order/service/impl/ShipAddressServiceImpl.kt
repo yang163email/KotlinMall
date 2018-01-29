@@ -1,6 +1,8 @@
 package com.yan.order.service.impl
 
+import com.yan.base.ext.convert
 import com.yan.base.ext.convertBoolean
+import com.yan.order.data.protocol.ShipAddress
 import com.yan.order.data.repository.ShipAddressRepository
 import com.yan.order.service.ShipAddressService
 import rx.Observable
@@ -19,4 +21,8 @@ class ShipAddressServiceImpl @Inject constructor() : ShipAddressService {
     override fun addShipAddress(shipUserName: String, shipUserMobile: String, shipAddress: String)
             : Observable<Boolean> =
             repository.addShipAddress(shipUserName, shipUserMobile, shipAddress).convertBoolean()
+
+    override fun getShipAddressList(): Observable<MutableList<ShipAddress>?> =
+            repository.getShipAddressList().convert()
+
 }

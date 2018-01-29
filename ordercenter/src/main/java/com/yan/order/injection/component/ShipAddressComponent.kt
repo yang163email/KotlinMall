@@ -3,6 +3,7 @@ package com.yan.order.injection.component
 import com.yan.base.injection.PerComponentScope
 import com.yan.base.injection.component.ActivityComponent
 import com.yan.order.injection.module.ShipAddressModule
+import com.yan.order.ui.activity.ShipAddressActivity
 import com.yan.order.ui.activity.ShipAddressEditActivity
 import dagger.Component
 
@@ -17,4 +18,5 @@ import dagger.Component
 interface ShipAddressComponent {
 
     fun inject(activity: ShipAddressEditActivity)
+    fun inject(activity: ShipAddressActivity)
 }

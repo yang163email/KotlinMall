@@ -1,5 +1,6 @@
 package com.yan.order.service
 
+import com.yan.order.data.protocol.ShipAddress
 import rx.Observable
 
 /**
@@ -14,4 +15,9 @@ interface ShipAddressService {
      */
     fun addShipAddress(shipUserName: String, shipUserMobile: String, shipAddress: String)
             : Observable<Boolean>
+
+    /**
+     * 获取收货地址列表
+     */
+    fun getShipAddressList(): Observable<MutableList<ShipAddress>?>
 }
