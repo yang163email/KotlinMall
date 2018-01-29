@@ -6,6 +6,7 @@ import com.bigkoo.alertview.AlertView
 import com.eightbitlab.rxbus.Bus
 import com.kennyc.view.MultiStateView
 import com.yan.base.ext.onClick
+import com.yan.base.ext.startLoading
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.order.R
 import com.yan.order.common.OrderConstant
@@ -84,6 +85,7 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
     }
 
     private fun loadData() {
+        mMultiStateView.startLoading()
         mPresenter.getShipAddressList()
     }
 
