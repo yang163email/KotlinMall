@@ -6,6 +6,7 @@ import com.kennyc.view.MultiStateView
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.order.R
+import com.yan.order.common.OrderConstant
 import com.yan.order.data.protocol.ShipAddress
 import com.yan.order.injection.component.DaggerShipAddressComponent
 import com.yan.order.injection.module.ShipAddressModule
@@ -51,11 +52,10 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
         mAdapter.mOptClickListener = object : ShipAddressAdapter.OnOptClickListener {
             override fun onSetDefault(address: ShipAddress) {
                 mPresenter.editShipAddress(address)
-                toast("设置默认")
             }
 
             override fun onEdit(address: ShipAddress) {
-                toast("编辑")
+                startActivity<ShipAddressEditActivity>(OrderConstant.KEY_SHIP_ADDRESS to address)
             }
 
             override fun onDelete(address: ShipAddress) {

@@ -10,4 +10,5 @@ import com.yan.base.presenter.view.BaseView
 interface ShipAddressEditView : BaseView {
 
     fun onAddShipAddressResult(result: Boolean)
+    fun onEditShipAddressResult(result: Boolean)
 }
