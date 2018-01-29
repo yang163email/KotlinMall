@@ -43,13 +43,14 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
 
     override fun onStart() {
         super.onStart()
-        mPresenter.getShipAddressList()
+        loadData()
     }
 
     private fun initView() {
         mAdapter = ShipAddressAdapter(this)
         mAdapter.mOptClickListener = object : ShipAddressAdapter.OnOptClickListener {
             override fun onSetDefault(address: ShipAddress) {
+                mPresenter.editShipAddress(address)
                 toast("设置默认")
             }
 
@@ -70,6 +71,10 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
         }
     }
 
+    private fun loadData() {
+        mPresenter.getShipAddressList()
+    }
+
     override fun onGetShipAddressListResult(result: MutableList<ShipAddress>?) {
         if (result != null && result.size > 0) {
             mAdapter.setData(result)
@@ -77,5 +82,10 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
         } else {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
         }
+    }
+
+    override fun onEditShipAddressResult(result: Boolean) {
+        toast("设置默认成功")
+        loadData()
     }
 }

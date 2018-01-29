@@ -20,4 +20,9 @@ interface ShipAddressService {
      * 获取收货地址列表
      */
     fun getShipAddressList(): Observable<MutableList<ShipAddress>?>
+
+    /**
+     * 修改收货地址
+     */
+    fun editShipAddress(address: ShipAddress): Observable<Boolean>
 }

@@ -2,6 +2,7 @@ package com.yan.order.presenter
 
 import com.yan.base.ext.execute2
 import com.yan.base.presenter.BasePresenter
+import com.yan.order.data.protocol.ShipAddress
 import com.yan.order.presenter.view.ShipAddressView
 import com.yan.order.service.ShipAddressService
 import javax.inject.Inject
@@ -26,4 +27,13 @@ class ShipAddressPresenter @Inject constructor() : BasePresenter<ShipAddressView
                 }
     }
 
+    fun editShipAddress(address: ShipAddress) {
+        if (!checkNetWork()) return
+        mView.showLoading()
+
+        orderService.editShipAddress(address)
+                .execute2(lifecycleProvider, mView) {
+                    onNext { mView.onEditShipAddressResult(it) }
+                }
+    }
 }

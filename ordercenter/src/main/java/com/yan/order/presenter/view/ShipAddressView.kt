@@ -11,4 +11,5 @@ import com.yan.order.data.protocol.ShipAddress
 interface ShipAddressView : BaseView {
 
     fun onGetShipAddressListResult(result: MutableList<ShipAddress>?)
+    fun onEditShipAddressResult(result: Boolean)
 }

@@ -40,6 +40,8 @@ class ShipAddressAdapter(context: Context) :
 
             mTvSetDefault.onClick {
                 mOptClickListener?.let {
+                    if (mTvSetDefault.isSelected) return@onClick
+                    model.shipIsDefault = 0
                     it.onSetDefault(model)
                 }
             }

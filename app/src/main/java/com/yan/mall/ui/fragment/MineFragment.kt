@@ -10,6 +10,7 @@ import com.yan.base.ui.fragment.BaseFragment
 import com.yan.base.utils.AppPrefsUtils
 import com.yan.mall.R
 import com.yan.mall.ui.activity.SettingActivity
+import com.yan.order.ui.activity.ShipAddressActivity
 import com.yan.provider.common.ProviderConstant
 import com.yan.provider.common.isLogin
 import com.yan.user.ui.activity.LoginActivity
@@ -37,6 +38,7 @@ class MineFragment : BaseFragment(), View.OnClickListener {
         mIvUserIcon.onClick(this)
         mTvUserName.onClick(this)
         mTvSetting.onClick(this)
+        mTvAddress.onClick(this)
     }
 
     override fun onStart() {
@@ -65,6 +67,7 @@ class MineFragment : BaseFragment(), View.OnClickListener {
                 else startActivity<LoginActivity>()
             }
             R.id.mTvSetting -> startActivity<SettingActivity>()
+            R.id.mTvAddress -> startActivity<ShipAddressActivity>()
         }
     }
 }
