@@ -18,6 +18,7 @@ import com.yan.order.presenter.OrderListPresenter
 import com.yan.order.presenter.view.OrderListView
 import com.yan.order.ui.adapter.OrderAdapter
 import kotlinx.android.synthetic.main.fragment_order.*
+import org.jetbrains.anko.support.v4.toast
 
 /**
  *  @author      : yan
@@ -50,6 +51,13 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
 
     private fun initView() {
         mAdapter = OrderAdapter(activity)
+        mAdapter.onOptClickListener = { type, order ->
+            when (type) {
+                OrderConstant.OPT_ORDER_PAY -> toast("待支付")
+                OrderConstant.OPT_ORDER_CONFIRM -> toast("确认支付")
+                OrderConstant.OPT_ORDER_CANCEL -> toast("取消")
+            }
+        }
         mRvOrder.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = mAdapter
