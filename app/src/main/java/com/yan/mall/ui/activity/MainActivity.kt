@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
+import com.yan.base.common.AppManager
 import com.yan.base.ui.activity.BaseActivity
 import com.yan.base.utils.AppPrefsUtils
 import com.yan.goods.common.GoodsConstant
@@ -15,6 +16,7 @@ import com.yan.mall.R
 import com.yan.mall.ui.fragment.HomeFragment
 import com.yan.mall.ui.fragment.MineFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import java.util.*
 
 /**
@@ -31,6 +33,9 @@ class MainActivity : BaseActivity() {
     private val mMineFragment by lazy { MineFragment() }
 
     private val mStack: Stack<Fragment> = Stack()
+
+    /** 按下back键的时间，默认0 */
+    private var pressTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +95,14 @@ class MainActivity : BaseActivity() {
 
     private fun loadCartSize() {
         mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
+    }
+
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - pressTime > 2000) {
+            toast("再按一次退出")
+            pressTime = time
+        } else AppManager.instance.exitApp(this)
     }
 
     override fun onDestroy() {

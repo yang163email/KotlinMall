@@ -1,6 +1,7 @@
 package com.yan.base.ui.activity
 
 import android.os.Bundle
+import com.alibaba.android.arouter.launcher.ARouter
 import com.yan.base.common.BaseApplication
 import com.yan.base.injection.component.ActivityComponent
 import com.yan.base.injection.component.DaggerActivityComponent
@@ -32,6 +33,8 @@ abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView 
         initActivityInjection()
         injectComponent()
         mLoadingDialog = ProgressLoading.create(this)
+        //ARouter注册
+        ARouter.getInstance().inject(this)
     }
 
     abstract fun injectComponent()

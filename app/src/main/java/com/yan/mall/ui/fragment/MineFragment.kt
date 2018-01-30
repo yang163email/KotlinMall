@@ -10,9 +10,13 @@ import com.yan.base.ui.fragment.BaseFragment
 import com.yan.base.utils.AppPrefsUtils
 import com.yan.mall.R
 import com.yan.mall.ui.activity.SettingActivity
+import com.yan.order.common.OrderConstant
+import com.yan.order.common.OrderStatus
+import com.yan.order.ui.activity.OrderActivity
+import com.yan.order.ui.activity.ShipAddressActivity
 import com.yan.provider.common.ProviderConstant
+import com.yan.provider.common.afterLogin
 import com.yan.provider.common.isLogin
-import com.yan.user.ui.activity.LoginActivity
 import com.yan.user.ui.activity.UserInfoActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -37,6 +41,11 @@ class MineFragment : BaseFragment(), View.OnClickListener {
         mIvUserIcon.onClick(this)
         mTvUserName.onClick(this)
         mTvSetting.onClick(this)
+        mTvAddress.onClick(this)
+        mTvWaitPayOrder.onClick(this)
+        mTvWaitConfirmOrder.onClick(this)
+        mTvCompleteOrder.onClick(this)
+        mTvAllOrder.onClick(this)
     }
 
     override fun onStart() {
@@ -58,13 +67,21 @@ class MineFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    override fun onClick(v: View) {
-        when(v.id) {
-            R.id.mIvUserIcon, R.id.mTvUserName -> {
-                if (isLogin()) startActivity<UserInfoActivity>()
-                else startActivity<LoginActivity>()
+    override fun onClick(v: View?) {
+        when(v) {
+            mIvUserIcon, mTvUserName -> {
+                afterLogin { startActivity<UserInfoActivity>() }
             }
-            R.id.mTvSetting -> startActivity<SettingActivity>()
+            mTvWaitPayOrder ->
+                startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_PAY)
+            mTvWaitConfirmOrder ->
+                startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_CONFIRM)
+            mTvCompleteOrder ->
+                startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_COMPLETED)
+            mTvAllOrder -> startActivity<OrderActivity>()
+            mTvSetting -> startActivity<SettingActivity>()
+            mTvAddress -> startActivity<ShipAddressActivity>()
         }
     }
+
 }

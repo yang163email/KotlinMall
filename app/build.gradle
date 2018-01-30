@@ -33,4 +33,5 @@ dependencies {
     }
     implementation project(':messagecenter')
     implementation project(':goodscenter')
+    implementation project(':ordercenter')
 }
