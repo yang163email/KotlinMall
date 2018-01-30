@@ -17,8 +17,11 @@ import com.yan.order.injection.component.DaggerOrderComponent
 import com.yan.order.injection.module.OrderModule
 import com.yan.order.presenter.OrderListPresenter
 import com.yan.order.presenter.view.OrderListView
+import com.yan.order.ui.activity.OrderDetailActivity
 import com.yan.order.ui.adapter.OrderAdapter
+import com.yan.provider.common.ProviderConstant
 import kotlinx.android.synthetic.main.fragment_order.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -58,6 +61,9 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
                 OrderConstant.OPT_ORDER_CONFIRM -> mPresenter.confirmOrder(order.id)
                 OrderConstant.OPT_ORDER_CANCEL -> cancelOrder(order)
             }
+        }
+        mAdapter.setOnItemClickListener { order, i ->
+            startActivity<OrderDetailActivity>(ProviderConstant.KEY_ORDER_ID to order.id)
         }
         mRvOrder.apply {
             layoutManager = LinearLayoutManager(activity)

@@ -4,6 +4,7 @@ import com.yan.base.injection.PerComponentScope
 import com.yan.base.injection.component.ActivityComponent
 import com.yan.order.injection.module.OrderModule
 import com.yan.order.ui.activity.OrderConfirmActivity
+import com.yan.order.ui.activity.OrderDetailActivity
 import com.yan.order.ui.fragment.OrderFragment
 import dagger.Component
 
@@ -19,4 +20,5 @@ interface OrderComponent {
 
     fun inject(activity: OrderConfirmActivity)
     fun inject(fragment: OrderFragment)
+    fun inject(activity: OrderDetailActivity)
 }
