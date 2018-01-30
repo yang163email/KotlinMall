@@ -124,4 +124,8 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
         toast("删除成功")
         loadData()
     }
+
+    override fun onBackPressed() {
+        alertView?.takeIf { it.isShowing }?.dismiss() ?: super.onBackPressed()
+    }
 }

@@ -26,4 +26,24 @@ class OrderListPresenter @Inject constructor() : BasePresenter<OrderListView>() 
                 }
     }
 
+    fun confirmOrder(orderId: Int) {
+        if (!checkNetWork()) return
+        mView.showLoading()
+
+        orderService.confirmOrder(orderId)
+                .execute2(lifecycleProvider, mView) {
+                    onNext { mView.onConfirmOrderResult(it) }
+                }
+    }
+
+    fun cancelOrder(orderId: Int) {
+        if (!checkNetWork()) return
+        mView.showLoading()
+
+        orderService.cancelOrder(orderId)
+                .execute2(lifecycleProvider, mView) {
+                    onNext { mView.onCancelOrderResult(it) }
+                }
+    }
+
 }

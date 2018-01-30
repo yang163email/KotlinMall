@@ -56,6 +56,7 @@ class OrderAdapter(context: Context) : BaseRecyclerViewAdapter<Order, OrderVH>(c
             holder.itemView.apply {
                 mMultiGoodsView.setVisible(true)
                 mSingleGoodsView.setVisible(false)
+                mMultiGoodsView.removeAllViews()
 
                 order.orderGoodsList.forEach {
                     val imageView = ImageView(mContext)
@@ -74,16 +75,24 @@ class OrderAdapter(context: Context) : BaseRecyclerViewAdapter<Order, OrderVH>(c
         //根据状态显示不同按钮
         when (order.orderStatus) {
             OrderStatus.ORDER_WAIT_PAY -> {
+                holder.itemView.mTvOrderStatusName.text = "待付款"
+                holder.itemView.mTvOrderStatusName.setTextColor(mContext.resources.getColor(R.color.common_red))
                 setOptVisible(false, true, true, holder)
             }
             OrderStatus.ORDER_WAIT_CONFIRM -> {
-                setOptVisible(false, true, true, holder)
+                holder.itemView.mTvOrderStatusName.text = "待收货"
+                holder.itemView.mTvOrderStatusName.setTextColor(mContext.resources.getColor(R.color.common_blue))
+                setOptVisible(true, false, true, holder)
             }
             OrderStatus.ORDER_COMPLETED -> {
-                setOptVisible(false, true, true, holder)
+                holder.itemView.mTvOrderStatusName.text = "已完成"
+                holder.itemView.mTvOrderStatusName.setTextColor(mContext.resources.getColor(R.color.common_yellow))
+                setOptVisible(false, false, false, holder)
             }
             OrderStatus.ORDER_CANCELED -> {
-                setOptVisible(false, true, true, holder)
+                holder.itemView.mTvOrderStatusName.text = "已取消"
+                holder.itemView.mTvOrderStatusName.setTextColor(mContext.resources.getColor(R.color.common_gray))
+                setOptVisible(false, false, false, holder)
             }
         }
         holder.itemView.apply {
@@ -98,6 +107,8 @@ class OrderAdapter(context: Context) : BaseRecyclerViewAdapter<Order, OrderVH>(c
             mBtnConfirm.setVisible(confirmVisible)
             mBtnPay.setVisible(waitPayVisible)
             mBtnCancel.setVisible(cancelVisible)
+
+            mBottomView.setVisible(confirmVisible || waitPayVisible || cancelVisible)
         }
     }
 
