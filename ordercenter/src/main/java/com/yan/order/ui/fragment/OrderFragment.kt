@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.kennyc.view.MultiStateView
 import com.yan.base.ext.startLoading
@@ -20,6 +21,7 @@ import com.yan.order.presenter.view.OrderListView
 import com.yan.order.ui.activity.OrderDetailActivity
 import com.yan.order.ui.adapter.OrderAdapter
 import com.yan.provider.common.ProviderConstant
+import com.yan.provider.router.RouterPath
 import kotlinx.android.synthetic.main.fragment_order.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -57,7 +59,12 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
         mAdapter = OrderAdapter(activity)
         mAdapter.onOptClickListener = { type, order ->
             when (type) {
-                OrderConstant.OPT_ORDER_PAY -> toast("待支付")
+                OrderConstant.OPT_ORDER_PAY -> {
+                    ARouter.getInstance().build(RouterPath.PaySDK.PATH_PAY)
+                            .withInt(ProviderConstant.KEY_ORDER_ID, order.id)
+                            .withLong(ProviderConstant.KEY_ORDER_PRICE, order.totalPrice)
+                            .navigation()
+                }
                 OrderConstant.OPT_ORDER_CONFIRM -> mPresenter.confirmOrder(order.id)
                 OrderConstant.OPT_ORDER_CANCEL -> cancelOrder(order)
             }
