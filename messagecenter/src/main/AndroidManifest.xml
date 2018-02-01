@@ -13,5 +13,19 @@
             android:name="JPUSH_CHANNEL"
             android:value="${JPUSH_CHANNEL}"
             tools:replace="android:value"/>
+
+        <receiver
+            android:name=".reciever.MessageReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.yan.mall" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
