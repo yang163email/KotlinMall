@@ -34,4 +34,5 @@ dependencies {
     implementation project(':messagecenter')
     implementation project(':goodscenter')
     implementation project(':ordercenter')
+    implementation project(':paysdk')
 }
