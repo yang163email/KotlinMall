@@ -43,6 +43,10 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+    }
+
+    override fun onStart() {
+        super.onStart()
         loadData()
     }
 

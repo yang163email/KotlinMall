@@ -24,4 +24,13 @@ class PayPresenter @Inject constructor() : BasePresenter<PayView>() {
             onNext { mView.onGetSignResult(it) }
         }
     }
+
+    fun payOrder(orderId: Int) {
+        if (!checkNetWork()) return
+        mView.showLoading()
+
+        service.payOrder(orderId).execute2(lifecycleProvider, mView) {
+            onNext { mView.onPayOrderResult(it) }
+        }
+    }
 }

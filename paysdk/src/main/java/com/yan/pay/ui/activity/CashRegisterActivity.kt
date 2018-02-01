@@ -1,6 +1,7 @@
 package com.yan.pay.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alipay.sdk.app.EnvUtils
 import com.alipay.sdk.app.PayTask
@@ -25,7 +26,7 @@ import org.jetbrains.anko.uiThread
  *  @description : 收银台页面
  */
 @Route(path = RouterPath.PaySDK.PATH_PAY)
-class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView {
+class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView, View.OnClickListener {
 
     private var mOrderId = 0
     private var mTotalPrice: Long = 0
@@ -55,7 +56,11 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView {
 
     private fun initView() {
         mTvTotalPrice.text = YuanFenConverter.changeF2YWithUnit(mTotalPrice)
-        mBtnPay.onClick { mPresenter.getPaySign(mOrderId, mTotalPrice) }
+        mTvAlipayType.isSelected = true
+        mTvAlipayType.onClick(this)
+        mTvWeixinType.onClick(this)
+        mTvBankCardType.onClick(this)
+        mBtnPay.onClick(this)
     }
 
     override fun onGetSignResult(result: String) {
@@ -63,11 +68,31 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView {
             val resultMap = PayTask(this@CashRegisterActivity).payV2(result, true)
             uiThread {
                 if ("9000" == resultMap["resultStatus"]) {
-                    toast("支付成功")
+                    mPresenter.payOrder(mOrderId)
                 } else {
                     toast("支付失败${resultMap["memo"]}")
                 }
             }
         }
+    }
+
+    override fun onPayOrderResult(result: Boolean) {
+        toast("支付成功")
+        finish()
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            mTvAlipayType -> updatePayType(true, false, false)
+            mTvWeixinType -> updatePayType(false, true, false)
+            mTvBankCardType -> updatePayType(false, false, true)
+            mBtnPay -> mPresenter.getPaySign(mOrderId, mTotalPrice)
+        }
+    }
+
+    private fun updatePayType(isAliPay: Boolean, isWeixinPay: Boolean, isBankCardPay: Boolean) {
+        mTvAlipayType.isSelected = isAliPay
+        mTvWeixinType.isSelected = isWeixinPay
+        mTvBankCardType.isSelected = isBankCardPay
     }
 }
