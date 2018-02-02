@@ -5,6 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import cn.jpush.android.api.JPushInterface
+import com.alibaba.android.arouter.launcher.ARouter
+import com.yan.provider.common.ProviderConstant
+import com.yan.provider.router.RouterPath
+import org.json.JSONObject
 
 
 /**
@@ -31,7 +35,13 @@ class MessageReceiver : BroadcastReceiver() {
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED == intent.action) {
             Log.d(TAG, "用户点击打开了通知")
-
+            val extra = bundle.getString(JPushInterface.EXTRA_EXTRA)
+            Log.d(TAG, "onReceive: $extra")
+            val json = JSONObject(extra)
+            val orderId = json.getInt("orderId")
+            ARouter.getInstance().build(RouterPath.MessageCenter.PATH_MESSAGE_ORDER)
+                    .withInt(ProviderConstant.KEY_ORDER_ID, orderId)
+                    .navigation()
         } else {
             Log.d(TAG, "Unhandled intent - " + intent.action)
         }

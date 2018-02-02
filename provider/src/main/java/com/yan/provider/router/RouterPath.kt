@@ -28,6 +28,7 @@ object RouterPath {
     class MessageCenter {
         companion object {
             const val PATH_MESSAGE_PUSH = "/messageCenter/push"
+            const val PATH_MESSAGE_ORDER = "/orderCenter/order"
         }
     }
 }

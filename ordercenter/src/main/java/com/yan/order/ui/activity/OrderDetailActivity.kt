@@ -2,6 +2,7 @@ package com.yan.order.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ui.activity.BaseMvpActivity
 import com.yan.order.R
@@ -12,6 +13,7 @@ import com.yan.order.presenter.OrderDetailPresenter
 import com.yan.order.presenter.view.OrderDetailView
 import com.yan.order.ui.adapter.OrderGoodsAdapter
 import com.yan.provider.common.ProviderConstant
+import com.yan.provider.router.RouterPath
 import kotlinx.android.synthetic.main.activity_order_detail.*
 
 /**
@@ -19,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_order_detail.*
  *  @date        : 2018/1/30 20:23
  *  @description : 订单详情页面
  */
+@Route(path = RouterPath.MessageCenter.PATH_MESSAGE_ORDER)
 class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), OrderDetailView {
 
     private lateinit var mAdapter: OrderGoodsAdapter
