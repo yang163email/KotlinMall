@@ -20,6 +20,7 @@ import com.yan.provider.common.isLogin
 import com.yan.user.ui.activity.UserInfoActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 /**
  *  @author      : yan
@@ -46,6 +47,7 @@ class MineFragment : BaseFragment(), View.OnClickListener {
         mTvWaitConfirmOrder.onClick(this)
         mTvCompleteOrder.onClick(this)
         mTvAllOrder.onClick(this)
+        mTvShare.onClick(this)
     }
 
     override fun onStart() {
@@ -72,15 +74,19 @@ class MineFragment : BaseFragment(), View.OnClickListener {
             mIvUserIcon, mTvUserName -> {
                 afterLogin { startActivity<UserInfoActivity>() }
             }
-            mTvWaitPayOrder ->
+            mTvWaitPayOrder -> afterLogin {
                 startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_PAY)
-            mTvWaitConfirmOrder ->
+            }
+            mTvWaitConfirmOrder -> afterLogin {
                 startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_CONFIRM)
-            mTvCompleteOrder ->
+            }
+            mTvCompleteOrder -> afterLogin {
                 startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_COMPLETED)
-            mTvAllOrder -> startActivity<OrderActivity>()
+            }
+            mTvAllOrder -> afterLogin { startActivity<OrderActivity>() }
+            mTvAddress -> afterLogin { startActivity<ShipAddressActivity>() }
+            mTvShare -> toast(R.string.coming_soon_tip)
             mTvSetting -> startActivity<SettingActivity>()
-            mTvAddress -> startActivity<ShipAddressActivity>()
         }
     }
 
