@@ -16,7 +16,7 @@
                 android:hint="搜索商品/品类"/>
 
             <ImageView
-                android:id="@+id/mScanIv"
+                android:id="@+id/mIvScan"
                 style="@style/WrapWrap"
                 android:src="@drawable/icon_scan"/>
         </LinearLayout>

@@ -18,6 +18,7 @@ import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.crosswall.lib.coverflow.CoverFlow
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 /**
  *  @author      : yan
@@ -39,6 +40,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun initListener() {
+        mIvScan.onClick(this)
         mEtSearch.onClick(this)
     }
 
@@ -105,6 +107,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View) {
         when(v.id) {
             R.id.mEtSearch -> startActivity<SearchGoodsActivity>()
+            R.id.mIvScan -> toast(R.string.coming_soon_tip)
         }
     }
 }
