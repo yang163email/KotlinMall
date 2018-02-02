@@ -6,7 +6,9 @@ import android.content.Intent
 import android.util.Log
 import cn.jpush.android.api.JPushInterface
 import com.alibaba.android.arouter.launcher.ARouter
+import com.eightbitlab.rxbus.Bus
 import com.yan.provider.common.ProviderConstant
+import com.yan.provider.event.MessageBadgeEvent
 import com.yan.provider.router.RouterPath
 import org.json.JSONObject
 
@@ -30,6 +32,7 @@ class MessageReceiver : BroadcastReceiver() {
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED == intent.action) {
             Log.d(TAG, "接受到推送下来的自定义消息")
             Log.d(TAG, "onReceive: ${bundle.getString(JPushInterface.EXTRA_MESSAGE)}")
+            Bus.send(MessageBadgeEvent(true))
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED == intent.action) {
             Log.d(TAG, "接受到推送下来的通知")
 

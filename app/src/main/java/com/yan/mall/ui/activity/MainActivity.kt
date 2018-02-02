@@ -16,6 +16,7 @@ import com.yan.mall.R
 import com.yan.mall.ui.fragment.HomeFragment
 import com.yan.mall.ui.fragment.MineFragment
 import com.yan.message.ui.fragment.MessageFragment
+import com.yan.provider.event.MessageBadgeEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 import java.util.*
@@ -41,8 +42,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        mBottomNavBar.checkMsgBadge(false)
 
         initFragment()
         initBottomNavBar()
@@ -75,6 +74,7 @@ class MainActivity : BaseActivity() {
                         changeFragment(position)
                     }
                 })
+        mBottomNavBar.checkMsgBadge(false)
     }
 
     /**
@@ -91,6 +91,10 @@ class MainActivity : BaseActivity() {
         Bus.observe<UpdateCartSizeEvent>()
                 .subscribe {
                     loadCartSize()
+                }.registerInBus(this)
+        Bus.observe<MessageBadgeEvent>()
+                .subscribe {
+                    mBottomNavBar.checkMsgBadge(it.isVisible)
                 }.registerInBus(this)
     }
 
