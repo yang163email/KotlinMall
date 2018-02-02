@@ -2,10 +2,12 @@ package com.yan.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yan.base.ext.enable2
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseMvpActivity
+import com.yan.provider.PushProvider
 import com.yan.provider.router.RouterPath
 import com.yan.user.R
 import com.yan.user.data.protocol.UserInfo
@@ -25,6 +27,10 @@ import org.jetbrains.anko.toast
  */
 @Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
+
+    @Autowired(name = RouterPath.MessageCenter.PATH_MESSAGE_PUSH)
+    @JvmField
+    var mPushProvider: PushProvider? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +77,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         when(v.id) {
             R.id.mTvRight -> startActivity<RegisterActivity>()
             R.id.mBtnLogin -> {
-                mPresenter.login(mEtMobile.text.toString(), mEtPwd.text.toString(), "")
+                mPresenter.login(mEtMobile.text.toString(), mEtPwd.text.toString(),
+                        mPushProvider?.getPushId() ?: "")
             }
             R.id.mTvForgetPwd -> startActivity<ForgetPwdActivity>()
         }

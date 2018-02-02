@@ -12,7 +12,7 @@ import com.yan.base.injection.module.AppModule
  *  @date        : 2018/1/12 22:11
  *  @description : application的基类
  */
-class BaseApplication : Application() {
+open class BaseApplication : Application() {
 
     companion object {
         lateinit var context: Context

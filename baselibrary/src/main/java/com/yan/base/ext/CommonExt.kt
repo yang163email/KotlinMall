@@ -102,5 +102,8 @@ fun MultiStateView.startLoading() {
 fun EditText.isNullOrEmpty(): Boolean =
         text?.trim().isNullOrEmpty()
 
+/**
+ * edittext扩展属性，获取其文本
+ */
 val EditText.textStr: String
     get() = text.trim().toString()
