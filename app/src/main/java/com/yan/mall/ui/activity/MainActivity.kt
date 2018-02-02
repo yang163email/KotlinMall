@@ -15,6 +15,7 @@ import com.yan.goods.ui.fragment.CategoryFragment
 import com.yan.mall.R
 import com.yan.mall.ui.fragment.HomeFragment
 import com.yan.mall.ui.fragment.MineFragment
+import com.yan.message.ui.fragment.MessageFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 import java.util.*
@@ -29,7 +30,7 @@ class MainActivity : BaseActivity() {
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
     private val mCartFragment by lazy { CartFragment() }
-    private val mMsgFragment by lazy { HomeFragment() }
+    private val mMsgFragment by lazy { MessageFragment() }
     private val mMineFragment by lazy { MineFragment() }
 
     private val mStack: Stack<Fragment> = Stack()
