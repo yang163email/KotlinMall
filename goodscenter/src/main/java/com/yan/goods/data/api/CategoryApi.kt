@@ -5,7 +5,7 @@ import com.yan.goods.data.protocol.Category
 import com.yan.goods.data.protocol.GetCategoryReq
 import retrofit2.http.Body
 import retrofit2.http.POST
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  *  @author      : yan

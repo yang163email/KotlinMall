@@ -3,11 +3,11 @@ package com.yan.order.ui.activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.bigkoo.alertview.AlertView
-import com.eightbitlab.rxbus.Bus
 import com.kennyc.view.MultiStateView
 import com.yan.base.ext.onClick
 import com.yan.base.ext.startLoading
 import com.yan.base.ui.activity.BaseMvpActivity
+import com.yan.base.utils.Bus
 import com.yan.order.R
 import com.yan.order.common.OrderConstant
 import com.yan.order.data.protocol.ShipAddress
@@ -66,6 +66,7 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
     private fun initAdapter() {
         mAdapter = ShipAddressAdapter(this)
         mAdapter.setOnItemClickListener { shipAddress, _ ->
+//            Bus.send(SelectAddressEvent(shipAddress))
             Bus.send(SelectAddressEvent(shipAddress))
             finish()
         }

@@ -5,7 +5,7 @@ import com.yan.base.ext.convertBoolean
 import com.yan.goods.data.protocol.CartGoods
 import com.yan.goods.data.repository.CartRepository
 import com.yan.goods.service.CartService
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

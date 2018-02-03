@@ -1,7 +1,7 @@
 package com.yan.user.service
 
 import com.yan.user.data.protocol.UserInfo
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  *  @author      : yan

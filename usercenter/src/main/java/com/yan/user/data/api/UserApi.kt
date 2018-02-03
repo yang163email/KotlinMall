@@ -4,7 +4,7 @@ import com.yan.base.data.protocol.BaseResp
 import com.yan.user.data.protocol.*
 import retrofit2.http.Body
 import retrofit2.http.POST
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  *  @author      : yan

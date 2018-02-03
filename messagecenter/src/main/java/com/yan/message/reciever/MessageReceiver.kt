@@ -6,7 +6,7 @@ import android.content.Intent
 import android.util.Log
 import cn.jpush.android.api.JPushInterface
 import com.alibaba.android.arouter.launcher.ARouter
-import com.eightbitlab.rxbus.Bus
+import com.yan.base.utils.Bus
 import com.yan.provider.common.ProviderConstant
 import com.yan.provider.event.MessageBadgeEvent
 import com.yan.provider.router.RouterPath

@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.eightbitlab.rxbus.Bus
+import com.yan.base.utils.Bus
 import com.kennyc.view.MultiStateView
 import com.yan.base.ext.startLoading
 import com.yan.base.ui.fragment.BaseMvpFragment

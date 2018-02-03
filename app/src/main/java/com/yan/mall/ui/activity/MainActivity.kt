@@ -3,8 +3,8 @@ package com.yan.mall.ui.activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
-import com.eightbitlab.rxbus.Bus
-import com.eightbitlab.rxbus.registerInBus
+import com.yan.base.utils.Bus
+import com.yan.base.utils.registerInBus
 import com.yan.base.common.AppManager
 import com.yan.base.ui.activity.BaseActivity
 import com.yan.base.utils.AppPrefsUtils

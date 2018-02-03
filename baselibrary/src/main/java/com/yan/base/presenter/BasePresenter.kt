@@ -1,9 +1,9 @@
 package com.yan.base.presenter
 
 import android.content.Context
-import com.yan.base.utils.NetWorkUtils
-import com.trello.rxlifecycle.LifecycleProvider
+import com.trello.rxlifecycle2.LifecycleProvider
 import com.yan.base.presenter.view.BaseView
+import com.yan.base.utils.NetWorkUtils
 import javax.inject.Inject
 
 /**

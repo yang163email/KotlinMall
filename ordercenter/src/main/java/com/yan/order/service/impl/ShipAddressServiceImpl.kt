@@ -5,7 +5,7 @@ import com.yan.base.ext.convertBoolean
 import com.yan.order.data.protocol.ShipAddress
 import com.yan.order.data.repository.ShipAddressRepository
 import com.yan.order.service.ShipAddressService
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

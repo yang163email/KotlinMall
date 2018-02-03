@@ -7,7 +7,7 @@ import com.yan.goods.data.protocol.GetGoodsDetailReq
 import com.yan.goods.data.protocol.GetGoodsListByKeywordReq
 import com.yan.goods.data.protocol.GetGoodsListReq
 import com.yan.goods.data.protocol.Goods
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

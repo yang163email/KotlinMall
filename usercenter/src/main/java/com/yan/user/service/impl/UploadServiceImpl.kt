@@ -3,7 +3,7 @@ package com.yan.user.service.impl
 import com.yan.base.ext.convert
 import com.yan.user.data.repository.UploadRepository
 import com.yan.user.service.UploadService
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

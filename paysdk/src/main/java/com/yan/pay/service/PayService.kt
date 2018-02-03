@@ -1,6 +1,6 @@
 package com.yan.pay.service
 
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  *  @author      : yan

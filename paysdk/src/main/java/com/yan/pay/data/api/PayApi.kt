@@ -5,7 +5,7 @@ import com.yan.pay.data.protocol.GetPaySignReq
 import com.yan.pay.data.protocol.PayOrderReq
 import retrofit2.http.Body
 import retrofit2.http.POST
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  *  @author      : yan

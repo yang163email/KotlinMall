@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.eightbitlab.rxbus.Bus
+import com.yan.base.utils.Bus
 import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ext.loadUrl
 import com.yan.base.ext.onClick2

@@ -7,7 +7,7 @@ import com.yan.order.data.protocol.AddShipAddressReq
 import com.yan.order.data.protocol.DeleteShipAddressReq
 import com.yan.order.data.protocol.EditShipAddressReq
 import com.yan.order.data.protocol.ShipAddress
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

@@ -2,7 +2,7 @@ package com.yan.user.data.api
 
 import com.yan.base.data.protocol.BaseResp
 import retrofit2.http.POST
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  *  @author      : yan

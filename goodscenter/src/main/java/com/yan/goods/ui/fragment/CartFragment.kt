@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.launcher.ARouter
-import com.eightbitlab.rxbus.Bus
-import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
 import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ext.onClick
@@ -16,6 +14,8 @@ import com.yan.base.ext.onClick2
 import com.yan.base.ext.setVisible
 import com.yan.base.ext.startLoading
 import com.yan.base.ui.fragment.BaseMvpFragment
+import com.yan.base.utils.Bus
+import com.yan.base.utils.registerInBus
 import com.yan.goods.R
 import com.yan.goods.data.protocol.CartGoods
 import com.yan.goods.event.CartAllCheckedEvent

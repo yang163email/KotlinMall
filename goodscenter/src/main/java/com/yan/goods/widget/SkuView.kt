@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.eightbitlab.rxbus.Bus
+import com.yan.base.utils.Bus
 import com.yan.goods.R
 import com.yan.goods.common.GoodsConstant
 import com.yan.goods.data.protocol.GoodsSku

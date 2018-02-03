@@ -1,6 +1,6 @@
 package com.yan.base.injection.module
 
-import com.trello.rxlifecycle.LifecycleProvider
+import com.trello.rxlifecycle2.LifecycleProvider
 import dagger.Module
 import dagger.Provides
 

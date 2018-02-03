@@ -5,7 +5,7 @@ import com.yan.base.data.protocol.BaseResp
 import com.yan.goods.data.api.CategoryApi
 import com.yan.goods.data.protocol.Category
 import com.yan.goods.data.protocol.GetCategoryReq
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

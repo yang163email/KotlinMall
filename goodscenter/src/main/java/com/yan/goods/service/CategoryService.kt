@@ -1,7 +1,7 @@
 package com.yan.goods.service
 
 import com.yan.goods.data.protocol.Category
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  *  @author      : yan

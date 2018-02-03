@@ -1,6 +1,6 @@
 package com.yan.base.ui.fragment
 
-import com.trello.rxlifecycle.components.support.RxFragment
+import com.trello.rxlifecycle2.components.support.RxFragment
 
 /**
  *  @author      : yan

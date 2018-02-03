@@ -4,7 +4,7 @@ import com.yan.base.data.net.RetrofitFactory
 import com.yan.base.data.protocol.BaseResp
 import com.yan.message.data.api.MessageApi
 import com.yan.message.data.protocol.Message
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

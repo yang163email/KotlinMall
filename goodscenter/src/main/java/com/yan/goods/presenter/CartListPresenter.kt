@@ -1,6 +1,6 @@
 package com.yan.goods.presenter
 
-import com.eightbitlab.rxbus.Bus
+import com.yan.base.utils.Bus
 import com.yan.base.ext.execute2
 import com.yan.base.presenter.BasePresenter
 import com.yan.base.utils.AppPrefsUtils

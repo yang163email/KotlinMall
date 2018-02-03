@@ -4,7 +4,7 @@ import com.yan.base.ext.convert
 import com.yan.goods.data.protocol.Category
 import com.yan.goods.data.repository.CategoryRepository
 import com.yan.goods.service.CategoryService
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

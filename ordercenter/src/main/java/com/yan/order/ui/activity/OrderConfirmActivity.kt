@@ -6,12 +6,12 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.eightbitlab.rxbus.Bus
-import com.eightbitlab.rxbus.registerInBus
 import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ext.onClick
 import com.yan.base.ext.setVisible
 import com.yan.base.ui.activity.BaseMvpActivity
+import com.yan.base.utils.Bus
+import com.yan.base.utils.registerInBus
 import com.yan.order.R
 import com.yan.order.data.protocol.Order
 import com.yan.order.event.SelectAddressEvent

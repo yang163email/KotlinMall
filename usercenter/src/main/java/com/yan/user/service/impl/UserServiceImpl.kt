@@ -5,7 +5,7 @@ import com.yan.base.ext.convertBoolean
 import com.yan.user.data.protocol.UserInfo
 import com.yan.user.data.repository.UserRepository
 import com.yan.user.service.UserService
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.eightbitlab.rxbus.Bus
-import com.eightbitlab.rxbus.registerInBus
 import com.yan.base.ext.loadUrl
 import com.yan.base.ui.fragment.BaseFragment
+import com.yan.base.utils.Bus
+import com.yan.base.utils.registerInBus
 import com.yan.goods.R
 import com.yan.goods.event.GoodsDetailImageEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_two.*
-import rx.android.schedulers.AndroidSchedulers
 
 /**
  *  @author      : yan

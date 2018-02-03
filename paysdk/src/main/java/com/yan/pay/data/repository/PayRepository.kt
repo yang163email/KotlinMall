@@ -5,7 +5,7 @@ import com.yan.base.data.protocol.BaseResp
 import com.yan.pay.data.api.PayApi
 import com.yan.pay.data.protocol.GetPaySignReq
 import com.yan.pay.data.protocol.PayOrderReq
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

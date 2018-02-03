@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
-import com.eightbitlab.rxbus.Bus
-import com.eightbitlab.rxbus.registerInBus
+import com.yan.base.utils.Bus
+import com.yan.base.utils.registerInBus
 import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseActivity

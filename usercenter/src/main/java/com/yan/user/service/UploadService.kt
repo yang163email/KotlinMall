@@ -1,6 +1,6 @@
 package com.yan.user.service
 
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  *  @author      : yan

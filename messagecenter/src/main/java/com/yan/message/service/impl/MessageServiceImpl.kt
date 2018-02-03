@@ -4,7 +4,7 @@ import com.yan.base.ext.convert
 import com.yan.message.data.protocol.Message
 import com.yan.message.data.repository.MessageRepository
 import com.yan.message.service.MessageService
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

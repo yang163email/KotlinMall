@@ -2,7 +2,7 @@ package com.yan.base.injection.component
 
 import android.app.Activity
 import android.content.Context
-import com.trello.rxlifecycle.LifecycleProvider
+import com.trello.rxlifecycle2.LifecycleProvider
 import com.yan.base.injection.ActivityScope
 import com.yan.base.injection.module.ActivityModule
 import com.yan.base.injection.module.LifecycleProviderModule

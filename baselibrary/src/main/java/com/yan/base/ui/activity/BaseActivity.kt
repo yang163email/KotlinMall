@@ -3,8 +3,10 @@ package com.yan.base.ui.activity
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import com.yan.base.common.AppManager
+import io.reactivex.Observable
 import org.jetbrains.anko.find
 
 /**
@@ -23,7 +25,8 @@ open class BaseActivity : RxAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Observable.just(1)
+                .bindToLifecycle(this)
         AppManager.instance.addActivity(this)
     }
 

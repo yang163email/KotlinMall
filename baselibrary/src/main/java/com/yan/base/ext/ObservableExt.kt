@@ -1,19 +1,17 @@
 package com.yan.base.ext
 
-import com.trello.rxlifecycle.LifecycleProvider
+import com.trello.rxlifecycle2.LifecycleProvider
+import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import com.yan.base.alias.Ex_T0_Unit
-import com.yan.base.alias.T0_Unit
-import com.yan.base.alias.T1_Unit
-import com.yan.base.alias.Throwable_Unit
 import com.yan.base.data.protocol.BaseResp
 import com.yan.base.presenter.view.BaseView
-import com.yan.base.rx.BaseFun1
-import com.yan.base.rx.BaseFunc1Boolean
-import com.yan.base.rx.BaseSubscriber
+import com.yan.base.rx.BaseFunction
+import com.yan.base.rx.BaseFunctionBoolean
 import com.yan.base.rx.SubscriberHelper
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  *  @author      : yan
@@ -24,29 +22,10 @@ import rx.schedulers.Schedulers
 /**
  * 扩展rx通用的执行方法
  */
-fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>) {
+fun <T> Observable<T>.execute(subscriber: Observer<T>) {
     subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(subscriber)
-}
-
-/**
- *  第二种扩展方式
- *  已废弃，由于其已经有了三个分开的回调，可以不使用
- *  直接使用.subscribe({ //onNext操作 }, { //onError操作 }, { //onComplete操作 })
- */
-fun <T> Observable<T>.execute1(onNext: T1_Unit<T>,
-                               onError: Throwable_Unit = {},
-                               onComplete: T0_Unit = {}) {
-    subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : BaseSubscriber<T>() {
-                override fun onNext(t: T) { onNext(t) }
-
-                override fun onError(e: Throwable) { onError(e) }
-
-                override fun onCompleted() { onComplete() }
-            })
 }
 
 /**
@@ -58,7 +37,7 @@ fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
     val subscriberHelper = SubscriberHelper<T>(baseView)
     init(subscriberHelper)
     subscribeOn(Schedulers.io())
-            .compose(lifecycleProvider.bindToLifecycle())
+            .bindToLifecycle(lifecycleProvider)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(subscriberHelper)
 }
@@ -66,9 +45,9 @@ fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
 /**
  * 将网络返回的数据转换成对应类型Observable
  */
-fun <T> Observable<BaseResp<T>>.convert(): Observable<T> = flatMap(BaseFun1())
+fun <T> Observable<BaseResp<T>>.convert(): Observable<T> = flatMap(BaseFunction())
 
 /**
  * 将网络返回的数据转换成Observable<Boolean>
  */
-fun <T> Observable<BaseResp<T>>.convertBoolean(): Observable<Boolean> = flatMap(BaseFunc1Boolean())
+fun <T> Observable<BaseResp<T>>.convertBoolean(): Observable<Boolean> = flatMap(BaseFunctionBoolean())

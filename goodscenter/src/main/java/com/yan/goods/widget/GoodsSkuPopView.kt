@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
-import com.eightbitlab.rxbus.Bus
+import com.yan.base.utils.Bus
 import com.kotlin.base.utils.YuanFenConverter
 import com.yan.base.ext.loadUrl
 import com.yan.base.ext.onClick

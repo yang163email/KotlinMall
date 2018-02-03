@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.Gravity
 import android.view.View
-import com.eightbitlab.rxbus.Bus
-import com.eightbitlab.rxbus.registerInBus
+import com.yan.base.utils.Bus
+import com.yan.base.utils.registerInBus
 import com.yan.base.ext.onClick
 import com.yan.base.ui.activity.BaseActivity
 import com.yan.base.utils.AppPrefsUtils

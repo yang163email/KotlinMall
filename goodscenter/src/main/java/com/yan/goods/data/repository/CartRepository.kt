@@ -7,7 +7,7 @@ import com.yan.goods.data.protocol.AddCartReq
 import com.yan.goods.data.protocol.CartGoods
 import com.yan.goods.data.protocol.DeleteCartReq
 import com.yan.goods.data.protocol.SubmitCartReq
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**

@@ -4,7 +4,7 @@ import com.yan.base.ext.convert
 import com.yan.base.ext.convertBoolean
 import com.yan.pay.data.repository.PayRepository
 import com.yan.pay.service.PayService
-import rx.Observable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
