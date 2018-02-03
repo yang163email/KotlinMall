@@ -40,4 +40,4 @@ typealias Throwable_Unit = T1_Unit<Throwable>
 typealias Editable_Unit = T1_Unit<Editable>
 
 /** textWatcher */
-typealias BeforeTextChanged = T4_Unit<CharSequence, Int, Int, Int>
+typealias BeforeTextChanged = (CharSequence, Int, Int, Int) -> Unit

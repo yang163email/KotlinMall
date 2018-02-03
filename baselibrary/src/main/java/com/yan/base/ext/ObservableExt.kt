@@ -2,14 +2,13 @@ package com.yan.base.ext
 
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
-import com.yan.base.alias.Ex_T0_Unit
 import com.yan.base.data.protocol.BaseResp
 import com.yan.base.presenter.view.BaseView
 import com.yan.base.rx.BaseFunction
 import com.yan.base.rx.BaseFunctionBoolean
+import com.yan.base.rx.BaseObserver
 import com.yan.base.rx.SubscriberHelper
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -22,7 +21,7 @@ import io.reactivex.schedulers.Schedulers
 /**
  * 扩展rx通用的执行方法
  */
-fun <T> Observable<T>.execute(subscriber: Observer<T>) {
+fun <T> Observable<T>.execute(subscriber: BaseObserver<T>) {
     subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(subscriber)
@@ -33,7 +32,7 @@ fun <T> Observable<T>.execute(subscriber: Observer<T>) {
  */
 fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
                                baseView: BaseView,
-                               init: Ex_T0_Unit<SubscriberHelper<T>>) {
+                               init: SubscriberHelper<T>.() -> Unit) {
     val subscriberHelper = SubscriberHelper<T>(baseView)
     init(subscriberHelper)
     subscribeOn(Schedulers.io())

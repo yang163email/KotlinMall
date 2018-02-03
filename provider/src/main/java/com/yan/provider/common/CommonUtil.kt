@@ -1,7 +1,6 @@
 package com.yan.provider.common
 
 import com.alibaba.android.arouter.launcher.ARouter
-import com.yan.base.alias.T0_Unit
 import com.yan.base.common.BaseConstant
 import com.yan.base.utils.AppPrefsUtils
 import com.yan.provider.router.RouterPath
@@ -18,7 +17,7 @@ fun isLogin() = AppPrefsUtils.getString(BaseConstant.KEY_SP_TOKEN).isNotEmpty()
 /**
  * 登录之后的操作，已经做了未登录的处理
  */
-fun afterLogin(block: T0_Unit) {
+fun afterLogin(block: () -> Unit) {
     if (isLogin()) block()
     else ARouter.getInstance().build(RouterPath.UserCenter.PATH_LOGIN).navigation()
 }
