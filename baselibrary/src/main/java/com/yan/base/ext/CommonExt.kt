@@ -21,13 +21,13 @@ import org.jetbrains.anko.find
  * 让setOnClickListener写起来更短
  */
 fun View.onClick(block: (View) -> Unit) {
-    setOnClickListener { block(this) }
+    setOnClickListener(block)
 }
 
 /**
  * 可以识别具体类型的Click事件
  */
-fun <T : View> T.onClick2(block: (T) -> Unit) {
+inline fun <T : View> T.onClick2(crossinline block: (T) -> Unit) {
     setOnClickListener { block(this) }
 }
 
@@ -38,7 +38,7 @@ fun View.onClick(listener: View.OnClickListener) {
 /**
  * 给EditText设置DSL风格的TextChanged监听器
  */
-fun EditText.onTextChangedListener(block: TextWatcherHelper.() -> Unit) {
+inline fun EditText.onTextChangedListener(block: TextWatcherHelper.() -> Unit) {
     val helper = TextWatcherHelper()
     block(helper)
     addTextChangedListener(helper)
@@ -47,7 +47,7 @@ fun EditText.onTextChangedListener(block: TextWatcherHelper.() -> Unit) {
 /**
  * 扩展Button是否可用,单个EditText监听
  */
-fun Button.enable(et: EditText, enable: () -> Boolean) {
+inline fun Button.enable(et: EditText, crossinline enable: () -> Boolean) {
     et.onTextChangedListener {
         onTextChanged { s, start, count, after ->
             this@enable.isEnabled = enable()
@@ -58,7 +58,7 @@ fun Button.enable(et: EditText, enable: () -> Boolean) {
 /**
  * 扩展Button是否可用，支持多个EditText监听
  */
-fun Button.enable2(etList: Array<EditText>, enable: () -> Boolean) {
+inline fun Button.enable2(etList: Array<EditText>, crossinline enable: () -> Boolean) {
     etList.forEach {
         it.onTextChangedListener {
             onTextChanged { s, start, count, after ->

@@ -30,7 +30,7 @@ fun <T> Observable<T>.execute(subscriber: BaseObserver<T>) {
 /**
  * 第三种扩展方式
  */
-fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
+inline fun <T> Observable<T>.execute2(lifecycleProvider: LifecycleProvider<*>,
                                baseView: BaseView,
                                init: SubscriberHelper<T>.() -> Unit) {
     val subscriberHelper = SubscriberHelper<T>(baseView)
