@@ -24,7 +24,7 @@ object Bus {
     /**
      * Avoid using this property directly, exposed only because it's used in inline fun
      */
-    val bus = PublishSubject.create<Any>()
+    val bus = PublishSubject.create<Any>().toSerialized()
 
     /**
      * Sends an event to Bus. Can be called from any thread
